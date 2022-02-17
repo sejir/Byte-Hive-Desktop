@@ -29,36 +29,35 @@ public class Main {
         Utilisateur u1 = new Utilisateur(1);
         Localisation loc1 = new Localisation(1);
         ReclamationLocation rl = new ReclamationLocation(u1.getId(),loc1.getId(),"This place rocks!");
-        boolean test = rec1.insertReclamationL(rl);
-        if (test){
-            System.out.println("yay");
-        }
-        else{
-            System.out.println("nayy");
-        }
+        
+        rec1.insertReclamationL(rl);
+        
+        
         //List<ReclamationLocation> list = rec1.readReclamationUserL(u1);
         //System.out.println(list);
+        
         //System.out.println(rec1.readReclamationAdminL());
+        
         //System.out.println(rec1.deleteReclamationL(1));
-        //ReclamationLocation rll = new ReclamationLocation(2,u1.getId(),"awwah",null,0,false,null,loc1.getId());
-        //System.out.println(rec1.updateReclamationUserL(rll));
+        
+        ReclamationLocation rll = new ReclamationLocation(2,u1.getId(),"---",null,0,false,null,loc1.getId());
+        System.out.println(rec1.updateReclamationUserL(rll));
+        
         // ReclamationLocation forAdmin = new ReclamationLocation("Allah ghaleb cnx tayha",2,2);
         // System.out.println(rec1.updateReclamationAdminL(forAdmin));
+        
         // rec1.deleteReclamationL(8);
+        
         //System.out.println(rec1.reclamationInfoL(2));
+        
         //rec1.statistiqueL();
     
         ReclamationGuideCRUD rec2= new ReclamationGuideCRUD();
         Utilisateur u2 = new Utilisateur(1);
         Guide guide1 = new Guide(1);
         ReclamationGuide rg = new ReclamationGuide(u2.getId(),guide1.getId(),"Professional guide!");
-        /*boolean test = rec2.insertReclamationG(rg);
-        if (test){
-            System.out.println("yes");
-        }
-        else{
-            System.out.println("nahh");
-        }*/
+        //rec2.insertReclamationG(rg);
+        
         
         /*List<ReclamationGuide> list2 = rec2.readReclamationUserG(u2);
         System.out.println(list2);*/
