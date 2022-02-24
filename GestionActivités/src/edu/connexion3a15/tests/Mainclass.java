@@ -16,13 +16,13 @@ import java.sql.Date;
 public class Mainclass {
     public static void main(String[] args) {
         
-// activites a = new activites("zza", "bla",new Date (20,20,20),new Date (20,20,21), "thinia");
+activites a = new activites("evbfn", "bla",new Date (20,20,20),new Date (20,20,21), "azd",1);
           
-    activitescrud pcd = new activitescrud();
-   // pcd.ajouteractivites(a);
+  activitescrud pcd = new activitescrud();
+  //pcd.ajouteractivites(a);
     // pcd.modifieractivites(a, 18);
         //pcd.delete(18);
-        
-   System.out.println (pcd.search(24));
+     String p="thinia";  
+  System.out.println (pcd.jointure(17));
         
       }}

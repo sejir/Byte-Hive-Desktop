@@ -23,13 +23,14 @@ public class activitescrud {
     
     public void ajouteractivites(activites a){
         try {
-            String requete = "INSERT INTO act(nom_act,description,d_debut,d_fin,emplacement) VALUES(?,?,?,?,?)";
+            String requete = "INSERT INTO act(nom_act,description,d_debut,d_fin,emplacement,idemplacement) VALUES(?,?,?,?,?,?)";
             PreparedStatement pst= Myconnection.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1, a.getNom_act());
             pst.setString(2, a.getDescription());
             pst.setDate(3, a.getD_debut());
             pst.setDate(4, a.getD_fin());
             pst.setString(5, a.getEmplacement());
+            pst.setInt(6, a.getIdemplacement());
             pst.executeUpdate();
             System.out.println("Element Ajouté!");                        
         } catch (SQLException ex) {
@@ -57,6 +58,7 @@ public class activitescrud {
             a.setD_debut(rs.getDate("d_debut"));
             a.setD_fin(rs.getDate("d_fin"));
             a.setEmplacement(rs.getString("emplacement"));
+            a.setIdemplacement(rs.getInt("idemplacement"));
                 
                      list.add(a);
 
@@ -89,7 +91,7 @@ System.out.println(k.getMessage());         }
  
     public void modifieractivites(activites a, int z){
         try {
-            String requete =  "UPDATE act SET nom_act = ?, description = ?, d_debut = ?,d_fin = ?,emplacement = ? WHERE id_act ="+z;
+            String requete =  "UPDATE act SET nom_act = ?, description = ?, d_debut = ?,d_fin = ?,emplacement = ? , idemplacement= ? WHERE id_act ="+z;
            
             PreparedStatement pst= Myconnection.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1, a.getNom_act());
@@ -97,28 +99,56 @@ System.out.println(k.getMessage());         }
             pst.setDate(3, a.getD_debut());
             pst.setDate(4, a.getD_fin());
             pst.setString(5, a.getEmplacement());
+            pst.setInt(6, a.getIdemplacement());
             pst.executeUpdate();
             System.out.println("Element MODIFIER!");                        
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());            
         }
     }
+ /*
+  public   List <activites> dupli(){
+        
+      List <activites> list = new ArrayList<>();
+        try{
+            
+            String requete = "SELECT nom_act, COUNT(nom_act) FROM act GROUP BY nom_act HAVING COUNT(nom_act)"  ;
+            Statement pste = Myconnection.getInstance().getCnx().createStatement();
+            ResultSet rs =  pste.executeQuery(requete);
+             while (rs.next()){
+            
+                
+           activites a = new activites() ;
+         
+            a.setNom_act(rs.getString("nom_act"));
+            rs.getInt(2);
+            
+            list.add(a);
+
+            }
+         
+        }
+
+        catch(SQLException k){
+System.out.println(k.getMessage());         }
+        return list;
+        
+    } 
+     */
  
- 
     
     
     
-    
-    
-    
-  /*public activites search(int id_act) {
-        activites ac = new activites();
-        try {
-           String requete ="select * from act where id_act=?" ;
-            PreparedStatement pste = Myconnection.getInstance().getCnx().prepareStatement(requete);
-            pste.setInt(1, id_act);
-            ResultSet rs =  pste.executeQuery();
-            rs.next();
+   public   List <activites> search(int Id_act){
+        
+      List <activites> list = new ArrayList<>();
+        try{
+            
+            String requete = "select id_act from act WHERE id_act=?"  ;
+            Statement pste = Myconnection.getInstance().getCnx().createStatement();
+            ResultSet rs =  pste.executeQuery(requete);
+            while (rs.next()){
+                
             activites a = new activites() ;
             a.setId_act(rs.getInt("id_act"));
             a.setNom_act(rs.getString("nom_act"));
@@ -126,18 +156,51 @@ System.out.println(k.getMessage());         }
             a.setD_debut(rs.getDate("d_debut"));
             a.setD_fin(rs.getDate("d_fin"));
             a.setEmplacement(rs.getString("emplacement"));
-        } catch (SQLException ex) {
-            System.out.println(ex);
+                
+                     list.add(a);
+
+            }
+         
         }
-        return ac;
-    }
-*/
+
+        catch(SQLException k){
+System.out.println(k.getMessage());         }
+        return list;
+        
+    } 
+ 
+    
  
     
     
-    public static void main(String[] args) {
+     public   List <activites> jointure(int p){
         
-            activitescrud pcd = new activitescrud();
- //pcd.search(17);
-    }
+      List <activites> list = new ArrayList<>();
+        try{
+            
+            String requete = "SELECT nom_act,description  , d_debut  , d_fin   , emplacement,id_emplacement,d_emplacement   FROM act inner JOIN localisation ON act.idemplacement= localisation.id_emplacement where id_act=" +p  ;
+            Statement pste = Myconnection.getInstance().getCnx().createStatement();
+            ResultSet rs =  pste.executeQuery(requete);
+            while (rs.next()){
+                
+            activites a = new activites() ;
+           // a.setId_act(rs.getInt("id_act"));
+            a.setNom_act(rs.getString("nom_act"));
+            a.setDescription(rs.getString("description"));
+            a.setD_debut(rs.getDate("d_debut"));
+            a.setD_fin(rs.getDate("d_fin"));
+            a.setEmplacement(rs.getString("emplacement"));
+            a.setIdemplacement(rs.getInt("id_emplacement"));
+                
+                     list.add(a);
+
+            }
+         
+        }
+
+        catch(SQLException k){
+System.out.println(k.getMessage());         }
+        return list;
+        
+    } 
 }

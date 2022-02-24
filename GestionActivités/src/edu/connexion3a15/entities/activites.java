@@ -19,6 +19,7 @@ public class activites  {
     public  Date d_debut ;
     public Date d_fin ;
     public String emplacement;
+    public int idemplacement;
     
     
     public activites(){
@@ -32,10 +33,11 @@ public class activites  {
      * @param d_debut
      * @param d_fin
      * @param emplacement
+     *  @param idemplacement
      */
     
  
-    public activites( String nom_act,String description,Date d_debut ,Date d_fin,String emplacement){
+    public activites( String nom_act,String description,Date d_debut ,Date d_fin,String emplacement,int idemplacement){
     
     //this.id_act=id_act;
     this.nom_act=nom_act;
@@ -43,7 +45,17 @@ public class activites  {
     this.d_fin=d_fin;
     this.description=description;
     this.emplacement=emplacement;
+    this.idemplacement=idemplacement;
     }
+
+    public int getIdemplacement() {
+        return idemplacement;
+    }
+
+    public void setIdemplacement(int idemplacement) {
+        this.idemplacement = idemplacement;
+    }
+    
  
     
 
@@ -103,7 +115,7 @@ public class activites  {
     
     @Override
     public String toString() {
-        return "Id_act: "+id_act + " Nom_act: "+nom_act +" Emplacement:"+emplacement+"Description:"+description+"D_debut:"+d_debut+"D_fin:"+d_fin; 
+        return "Id_act: "+id_act + " Nom_act: "+nom_act +" Emplacement:"+emplacement+"Description:"+description+"D_debut:"+d_debut+"D_fin:"+d_fin+"idemplacement:"+idemplacement;
     }
 
    
