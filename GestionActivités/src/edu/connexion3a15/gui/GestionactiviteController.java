@@ -18,10 +18,12 @@ import edu.connexion3a15.entities.activites;
 import edu.connexion3a15.services.activitescrud;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -52,6 +54,7 @@ public class GestionactiviteController implements Initializable {
     private TableColumn<activites, Date> tvdebut;
     @FXML
     private TableColumn<activites, Date> tvdatefinal;
+    @FXML
     private TableColumn<activites, String> tvdescact;
     @FXML
     private TableView<activites> tvactivites;
@@ -65,7 +68,7 @@ public class GestionactiviteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         showactivites ();
         
-                System.out.print("test");
+               // System.out.print("test");
 
         
         
@@ -73,7 +76,20 @@ public class GestionactiviteController implements Initializable {
 
     @FXML
     private void modifieractivite(ActionEvent event) {
-    }
+        
+         activitescrud a =new activitescrud();
+         activites z  =tvactivites.getSelectionModel().getSelectedItem();
+        int selectedID = tvactivites.getSelectionModel().getSelectedIndex();
+        String nom_act = txnomact.getText();
+        String description = txdescirptionact.getText();
+        String emplacament = txemplacement.getText() ; 
+        Date  d_debut = Date.valueOf(calddebut.getValue());
+        Date d_fin = Date.valueOf(caldfinal.getValue());
+         
+activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1);   
+       a.modifieractivites(act,z.getId_act());
+        showactivites ();
+     }
 
     @FXML
     private void ajouteractivite(ActionEvent event) {        
@@ -86,7 +102,7 @@ public class GestionactiviteController implements Initializable {
 activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1);   
       activitescrud a = new activitescrud() ;
       a.ajouteractivites(act);
-      
+       showactivites ();
       
     
     
@@ -96,19 +112,42 @@ activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1)
 
     @FXML
     private void supprimeractivite(ActionEvent event) {
+         activitescrud a =new activitescrud();
+         activites act  =tvactivites.getSelectionModel().getSelectedItem();
+         a.delete(act.getId_act());
+       int selectedID = tvactivites.getSelectionModel().getSelectedIndex();
+        tvactivites.getItems().remove(selectedID);
+         showactivites ();
     }
  
     public void showactivites (){
      activitescrud act = new activitescrud();
+     
       ObservableList <activites> list = act.listeract();
         tvnomact.setCellValueFactory(new PropertyValueFactory<activites,String>("nom_act"));
         tvdebut.setCellValueFactory(new PropertyValueFactory<activites,Date>("d_debut"));
         tvdatefinal.setCellValueFactory(new PropertyValueFactory<activites,Date>("d_fin"));
         tvemplacement.setCellValueFactory(new PropertyValueFactory<activites,String>("emplacement"));
-         //    tvdescact.setCellValueFactory(new PropertyValueFactory<activites,String>("description"));
+         tvdescact.setCellValueFactory(new PropertyValueFactory<activites,String>("description"));
+
 
         //System.out.print("test");
         tvactivites.setItems(list);
+    }
+
+    @FXML
+    private void selectrow(MouseEvent event) {
+        activites act  =tvactivites.getSelectionModel().getSelectedItem();
+        System.out.println("id"+act.getId_act());
+        
+        txnomact.setText(act.nom_act);
+        calddebut.setValue(LocalDate.parse(act.d_debut.toString()));
+        caldfinal.setValue(LocalDate.parse(act.d_fin.toString()));
+        txemplacement.setText(act.nom_act);
+        txdescirptionact.setText(act.nom_act);
+        Date.valueOf(calddebut.getValue());
+        
+        
     }
    
     }
