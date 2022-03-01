@@ -13,6 +13,8 @@ import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -41,9 +43,9 @@ public class activitescrud {
     
     
      
-   public   List <activites> listeract(){
+   public   ObservableList <activites> listeract(){
         
-      List <activites> list = new ArrayList<>();
+      ObservableList <activites> list =  FXCollections.observableArrayList();
         try{
             
             String requete = "SELECT * FROM act"  ;

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: FFF8DC;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="edu.connexion3a15.gui.GestionactiviteController">
+   <children>
+      <VBox layoutX="7.0" layoutY="8.0" prefHeight="168.0" prefWidth="131.0" spacing="10.0">
+         <children>
+            <Label text="Nom activite">
+               <font>
+                  <Font name="Baloo" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="10.0" text="Date debut">
+               <font>
+                  <Font name="Baloo" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="27.0" text="cloture d'activite">
+               <font>
+                  <Font name="Baloo" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="44.0" text="emplacement">
+               <font>
+                  <Font name="Baloo" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="10.0" layoutY="61.0" text="description activite">
+               <font>
+                  <Font name="Baloo" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="138.0" layoutY="8.0" prefHeight="168.0" prefWidth="126.0" spacing="10.0">
+         <children>
+            <TextField fx:id="txnomact" promptText="saisie le nom de l'activite" />
+            <DatePicker fx:id="calddebut" promptText="date debut" />
+            <DatePicker fx:id="caldfinal" promptText="date final" />
+            <TextField fx:id="txemplacement" promptText="ou l'activite" />
+            <TextField fx:id="txdescirptionact" promptText="information" />
+         </children>
+      </VBox>
+      <Label layoutX="463.0" layoutY="14.0" prefHeight="25.0" prefWidth="131.0" text="Nos activite">
+         <font>
+            <Font name="Baloo" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnmodifieract" layoutX="101.0" layoutY="194.0" mnemonicParsing="false" onAction="#modifieractivite" text="modifier" />
+      <Button fx:id="btnajouteract" layoutX="7.0" layoutY="194.0" mnemonicParsing="false" onAction="#ajouteractivite" text="ajouter" />
+      <Button fx:id="btnsupprimeract" layoutX="194.0" layoutY="194.0" mnemonicParsing="false" onAction="#supprimeractivite" text="supprimer" />
+      <TableView fx:id="tvactivites" layoutX="299.0" layoutY="55.0" prefHeight="243.0" prefWidth="437.0">
+        <columns>
+          <TableColumn fx:id="tvnomact" prefWidth="62.0" text="Nom Activite" />
+            <TableColumn fx:id="tvdebut" prefWidth="81.0" text="date debut" />
+            <TableColumn fx:id="tvdatefinal" prefWidth="89.0" text="Cloture" />
+            <TableColumn fx:id="tvemplacement" prefWidth="88.0" text="emplacement" />
+            <TableColumn prefWidth="112.0" text="description" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
