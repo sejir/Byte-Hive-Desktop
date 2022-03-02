@@ -17,38 +17,22 @@ public class EquipementLouer {
     private float prixEquipement;
     private String descriptionEquipement;
     private String imageEquipement;
-    private Date dateEmprunt;
-    private Date dateRemise;
     private int idFournisseur;
-    private int idClient;
     private int disponibilite;
     
     public EquipementLouer() {
     }
 
-    public EquipementLouer(int idEquipement, String nomEquipement, float prixEquipement, String descriptionEquipement, String imageEquipement, int idFournisseur,int idClient,int disponibilite) {
+    public EquipementLouer(int idEquipement, String nomEquipement, float prixEquipement, String descriptionEquipement, String imageEquipement, int idFournisseur,int disponibilite) {
         this.idEquipement = idEquipement;
         this.nomEquipement = nomEquipement;
         this.prixEquipement = prixEquipement;
         this.descriptionEquipement = descriptionEquipement;
         this.imageEquipement = imageEquipement;
         this.idFournisseur = idFournisseur;
-        this.idClient = idClient;
         this.disponibilite = disponibilite;
     }
 
-    public EquipementLouer(int idEquipement, String nomEquipement, float prixEquipement, String descriptionEquipement, String imageEquipement, Date dateEmprunt, Date dateRemise, int idFournisseur ,int idClient,int disponibilite) {
-        this.idEquipement = idEquipement;
-        this.nomEquipement = nomEquipement;
-        this.prixEquipement = prixEquipement;
-        this.descriptionEquipement = descriptionEquipement;
-        this.imageEquipement = imageEquipement;
-        this.dateEmprunt = dateEmprunt;
-        this.dateRemise = dateRemise;
-        this.idFournisseur = idFournisseur;
-        this.idClient = idClient;
-        this.disponibilite = disponibilite;
-    }
 
     public EquipementLouer(int i, String ben_Salah, int i0, String hedi, String fd, int i1, Date date, Date date0, int i2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -103,30 +87,6 @@ public class EquipementLouer {
         this.idFournisseur = idFournisseur;
     }
 
-    public Date getDateEmprunt() {
-        return dateEmprunt;
-    }
-
-    public void setDateEmprunt(Date dateEmprunt) {
-        this.dateEmprunt = dateEmprunt;
-    }
-
-    public Date getDateRemise() {
-        return dateRemise;
-    }
-
-    public void setDateRemise(Date dateRemise) {
-        this.dateRemise = dateRemise;
-    }
-
-    public int getIdClient() {
-        return idClient;
-    }
-
-    public void setIdClient(int idClient) {
-        this.idClient = idClient;
-    }
-
     public int getDisponibilite() {
         return disponibilite;
     }
@@ -137,7 +97,7 @@ public class EquipementLouer {
 
     @Override
     public String toString() {
-        return "Id de l'équipement:" + idEquipement + "Nom de l'équipement:" + nomEquipement +"Prix de l'équipement:" + prixEquipement + "Description de l'équipement:" + descriptionEquipement + "Image de l'équipement:" + imageEquipement + "Date de l'emprunt :" + dateEmprunt + "Date de la remise :" + dateRemise +"Id du fournisseur:" + idFournisseur + "Id du client:" + idClient + "disponibilite" + disponibilite ; 
+        return "Id de l'équipement:" + idEquipement + "Nom de l'équipement:" + nomEquipement +"Prix de l'équipement:" + prixEquipement + "Description de l'équipement:" + descriptionEquipement + "Image de l'équipement:" + imageEquipement + "Id du fournisseur:" + idFournisseur + "disponibilite" + disponibilite ; 
     }
     
     

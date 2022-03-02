@@ -14,33 +14,33 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author user
  */
 public class EquipementLouerCRUD {
+    
     public void ajouterEquipementLouer(EquipementLouer el){
         try {
-            String requete = "INSERT INTO equipementlouer(nomEquipement,prixEquipement,descriptionEquipement,imageEquipement,dateEmprunt,dateRemise,idFournisseur,idClient,disponibilite) VALUES(?,?,?,?,?,?,?,?,?)";
+            String requete = "INSERT INTO equipementlouer(nomEquipement,prixEquipement,descriptionEquipement,imageEquipement,idFournisseur,disponibilite) VALUES(?,?,?,?,?,?)";
             PreparedStatement pst= MyConnetion.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1, el.getNomEquipement());
             pst.setFloat(2, el.getPrixEquipement());
             pst.setString(3, el.getDescriptionEquipement());
             pst.setString(4, el.getImageEquipement());
-            pst.setDate(5, el.getDateEmprunt());
-            pst.setDate(6, el.getDateRemise());
-            pst.setInt(7, el.getIdFournisseur());
-            pst.setInt(8, el.getIdClient());
-            pst.setInt(9, el.getDisponibilite());
+            pst.setInt(5, el.getIdFournisseur());
+            pst.setInt(6, el.getDisponibilite());
             pst.executeUpdate();
-            System.out.println("Element Ajouté!");                        
+            System.out.println("Equipement Ajouté!");                        
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());            
         }
     }
-    public List<EquipementLouer> listerEquipementLouer(){
-        List<EquipementLouer> myList = new ArrayList();
+    public ObservableList<EquipementLouer> listerEquipementLouer(){
+        ObservableList<EquipementLouer> myList = FXCollections.observableArrayList();
         try {
             String requete = "SELECT * FROM equipementlouer";
             Statement st= MyConnetion.getInstance().getCnx().prepareStatement(requete);
@@ -52,11 +52,8 @@ public class EquipementLouerCRUD {
                 el.setPrixEquipement(rs.getFloat(3));
                 el.setDescriptionEquipement(rs.getString(4));
                 el.setImageEquipement(rs.getString(5));
-                el.setDateEmprunt(rs.getDate(6));
-                el.setDateRemise(rs.getDate(7));
-                el.setIdFournisseur(rs.getInt(8)); 
-                el.setIdClient(rs.getInt(9));
-                el.setDisponibilite(rs.getInt(10));
+                el.setIdFournisseur(rs.getInt(6)); 
+                el.setDisponibilite(rs.getInt(7));
                 myList.add(el);
             }
         } catch (SQLException ex) {
@@ -64,11 +61,32 @@ public class EquipementLouerCRUD {
         }
         return myList;
        }
-    
+    public ObservableList<EquipementLouer> listerEquipementLouerClient(){
+        ObservableList<EquipementLouer> myList = FXCollections.observableArrayList();
+        try {
+            String requete = "SELECT * FROM equipementlouer where disponibilite=0";
+            Statement st= MyConnetion.getInstance().getCnx().prepareStatement(requete);
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()){
+                EquipementLouer el = new EquipementLouer();
+                el.setIdEquipement(rs.getInt(1));
+                el.setNomEquipement(rs.getString(2));
+                el.setPrixEquipement(rs.getFloat(3));
+                el.setDescriptionEquipement(rs.getString(4));
+                el.setImageEquipement(rs.getString(5));
+                el.setIdFournisseur(rs.getInt(6)); 
+                el.setDisponibilite(rs.getInt(7));
+                myList.add(el);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());            
+        }
+        return myList;
+       }
     public void modifierEquipementLouer(int id ,EquipementLouer el)    {
      
  
-        String requete = "UPDATE equipementlouer SET nomEquipement=?, prixEquipement=?,descriptionEquipement=?,imageEquipement=? , dateEmprunt=? , dateRemise=? , idFournisseur=? ,idClient=? , disponibilite=? WHERE idEquipement = " + id;
+        String requete = "UPDATE equipementlouer SET nomEquipement=?, prixEquipement=?,descriptionEquipement=?,imageEquipement=? ,  idFournisseur=? , disponibilite=? WHERE idEquipement = " + id;
     
         try {
             PreparedStatement pst= MyConnetion.getInstance().getCnx().prepareStatement(requete);
@@ -76,14 +94,12 @@ public class EquipementLouerCRUD {
             pst.setFloat(2, el.getPrixEquipement());
             pst.setString(3, el.getDescriptionEquipement());
             pst.setString(4, el.getImageEquipement());
-            pst.setDate(5, el.getDateEmprunt());
-            pst.setDate(6, el.getDateRemise());
-            pst.setInt(7, el.getIdFournisseur());
-            pst.setInt(8, el.getIdFournisseur());
+            pst.setInt(5, el.getIdFournisseur());
+            pst.setInt(6, el.getDisponibilite());
 
              
             pst.executeUpdate();
-            System.out.println("equipement modifier");
+            System.out.println("Equipement Modifié");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());            
         }
@@ -101,22 +117,28 @@ public class EquipementLouerCRUD {
         }
     
     }
-    public void duree(){
-       String requete = "select c.nomClient,el.prixEquipement FROM equipementlouer el inner join client c on el.idClient=c.idClient where dateRemise > sysdate() "; 
-        
+    
+    
+    public ObservableList<EquipementLouer> duree(){
+       String requete = "select c.nomClient,el.nomEquipement FROM equipementlouer el inner join louer l on el.idequipement=l.idEquipement inner join client c on c.idClient=l.idClient where dateRemise > sysdate() "; 
+       ObservableList<EquipementLouer> myList = FXCollections.observableArrayList();
+ 
         try {
             PreparedStatement pst= MyConnetion.getInstance().getCnx().prepareStatement(requete);
              ResultSet rs = pst.executeQuery();
              while(rs.next()){
-                String s =rs.getString(1);
-                float f = rs.getFloat(2);
-                System.out.println("le nom du client est:" + s);
-                System.out.println("le prix est:" + f);
+                 EquipementLouer el = new EquipementLouer();
+                el.setDescriptionEquipement(rs.getString(1));
+
+                el.setNomEquipement(rs.getString(2));
+                myList.add(el);
+              
 
              }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());            
         }
+        return myList;
         
        
     }

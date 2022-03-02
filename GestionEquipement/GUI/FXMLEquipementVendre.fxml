@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLEquipementVendreController">
+   <children>
+      <AnchorPane prefHeight="575.0" prefWidth="150.0" style="-fx-background-color: black;">
+         <children>
+            <TextField fx:id="TFId" layoutX="28.0" layoutY="21.0" promptText="ID Produit" visible="false" />
+            <TextField fx:id="TFNomEquipV" layoutX="43.0" layoutY="93.0" prefHeight="31.0" prefWidth="131.0" promptText="Nom" />
+            <TextField fx:id="TFPrixEquipV" layoutX="43.0" layoutY="232.0" prefHeight="31.0" prefWidth="131.0" promptText="Prix" />
+            <TextField fx:id="TFQuantiteEquipV" layoutX="42.0" layoutY="278.0" prefHeight="31.0" prefWidth="131.0" promptText="Quantité" />
+            <TextArea fx:id="TADescriptionEquipV" layoutX="42.0" layoutY="138.0" prefHeight="79.0" prefWidth="131.0" promptText="Description" />
+            <TextField fx:id="TFIdFEquipV" layoutX="42.0" layoutY="366.0" prefHeight="31.0" prefWidth="131.0" promptText="ID Fournisseur" />
+            <TextField fx:id="TFIdEquipV" layoutX="43.0" layoutY="52.0" prefHeight="31.0" prefWidth="131.0" promptText="ID Equipement" />
+            <TextField fx:id="TFImageEquipV" layoutX="42.0" layoutY="321.0" prefHeight="31.0" prefWidth="131.0" promptText="image" />
+            <Button fx:id="BTNAjouterEquipV" layoutX="32.0" layoutY="424.0" mnemonicParsing="false" onAction="#ajouterEquipementV" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: green;" text="Ajouter " textFill="#fcf7f7">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="144.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../GestionRH/src/GUI/image/add.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="BTNModifierEquipV" layoutX="33.0" layoutY="475.0" mnemonicParsing="false" onAction="#modifierEquipementV" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: orange;" text="Modifier" textFill="#fff8f8">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="BTNSupprimerEquipV" layoutX="32.0" layoutY="517.0" mnemonicParsing="false" onAction="#supprimerEquipementV" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: red;" text="Supprimer" textFill="#fff8f8">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="145.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../GestionRH/src/GUI/image/approve-and-update.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="39.0" fitWidth="25.0" layoutX="148.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../GestionRH/src/GUI/image/delete-trash.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="TVEquipV" layoutX="215.0" layoutY="91.0" onMouseClicked="#selectionner" prefHeight="297.0" prefWidth="564.0">
+        <columns>
+          <TableColumn fx:id="colIdEquipV" prefWidth="50.0" text="ID" />
+          <TableColumn fx:id="colNomEquipV" prefWidth="82.0" text="Nom " />
+            <TableColumn fx:id="colPrixEquipV" prefWidth="70.0" text="Prix" />
+            <TableColumn fx:id="colDescriptionEquipV" prefWidth="109.0" text="Description" />
+            <TableColumn fx:id="colImageEquipV" prefWidth="64.0" text="Image" />
+            <TableColumn fx:id="colQuantiteEquipV" prefWidth="75.0" text="Quantité" />
+            <TableColumn fx:id="colIdFEquipV" prefWidth="122.0" text="ID Fournisseur" />
+        </columns>
+      </TableView>
+      <Label layoutX="320.0" layoutY="28.0" text="Equipement à vendre">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <TableView fx:id="TVPrixEquipV" layoutX="248.0" layoutY="400.0" prefHeight="159.0" prefWidth="207.0">
+        <columns>
+          <TableColumn fx:id="colNomEquipV1" prefWidth="100.0" text="Nom" />
+          <TableColumn fx:id="colPrixTotalEquipV" prefWidth="106.0" text="Prix total" />
+        </columns>
+      </TableView>
+      <Button fx:id="BTNquitterEquipV" layoutX="620.0" layoutY="529.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: Gray;" text="Quitter" textFill="#fff8f8">
+         <font>
+            <Font name="Times New Roman Bold" size="19.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="730.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../GestionRH/src/GUI/image/18542.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="TFRechercheEquipV" layoutX="497.0" layoutY="414.0" promptText="Recherche" />
+   </children>
+</AnchorPane>

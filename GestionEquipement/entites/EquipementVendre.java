@@ -5,6 +5,13 @@
  */
 package edu.naturecruise.entites;
 
+import edu.naturecruise.utils.MyConnetion;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author user
@@ -17,6 +24,7 @@ public class EquipementVendre {
     private String imageEquipement;
     private int idFournisseur;
     private int quantiteEquipement;
+    
 
     public EquipementVendre() {
     }
@@ -92,4 +100,8 @@ public class EquipementVendre {
     public String toString() {
         return "Id de l'équipement:" + idEquipement + "Nom de l'équipement:" + nomEquipement +"Prix de l'équipement:" + prixEquipement + "Description de l'équipement:" + descriptionEquipement + "Image de l'équipement:" + imageEquipement + "Id du fournisseur:" + idFournisseur+ "Quantite des équipements:" + quantiteEquipement; 
     }
+
+    
+    
+    
 }

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLEquipementLouerController">
+   <children>
+      <AnchorPane layoutX="-6.0" layoutY="-3.0" prefHeight="576.0" prefWidth="215.0" style="-fx-background-color: black;">
+         <children>
+            <TextField fx:id="TFId" layoutX="28.0" layoutY="21.0" promptText="ID Produit" visible="false" />
+            <TextField fx:id="TFIdEquipL" layoutX="55.0" layoutY="75.0" prefHeight="15.0" prefWidth="108.0" promptText="ID Equipement" />
+            <TextField fx:id="TFNomEquipL" layoutX="55.0" layoutY="121.0" prefHeight="21.0" prefWidth="108.0" promptText="Nom" />
+            <TextArea fx:id="TADescriptionEquipL" layoutX="55.0" layoutY="165.0" prefHeight="53.0" prefWidth="108.0" promptText="Description" />
+            <TextField fx:id="TFPrixEquipL" layoutX="55.0" layoutY="226.0" prefHeight="31.0" prefWidth="108.0" promptText="Prix" />
+            <TextField fx:id="TFImageEquipL" layoutX="54.0" layoutY="272.0" prefHeight="31.0" prefWidth="108.0" promptText="image" />
+            <TextField fx:id="TFIdFEquipL" layoutX="54.0" layoutY="314.0" prefHeight="31.0" prefWidth="108.0" promptText="ID Fournisseur" />
+            <Button layoutX="32.0" layoutY="427.0" mnemonicParsing="false" onAction="#ajouterEquipementL" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: green;" text="Ajouter " textFill="#fcf7f7">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="144.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../GestionRH/src/GUI/image/add.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="33.0" layoutY="478.0" mnemonicParsing="false" onAction="#modifierEquipementL" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: orange;" text="Modifier" textFill="#fff8f8">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="32.0" layoutY="520.0" mnemonicParsing="false" onAction="#supprimerEquipementL" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: red;" text="Supprimer" textFill="#fff8f8">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="145.0" layoutY="478.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../GestionRH/src/GUI/image/approve-and-update.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="39.0" fitWidth="25.0" layoutX="148.0" layoutY="523.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../GestionRH/src/GUI/image/delete-trash.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="TFDisponibiliteEquipL" layoutX="53.0" layoutY="357.0" prefHeight="31.0" prefWidth="108.0" promptText="Disponibilité" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="BTNQuitterEquipL" layoutX="610.0" layoutY="519.0" mnemonicParsing="false" onAction="#Quitter" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: Gray;" text="Quitter" textFill="#fff8f8">
+         <font>
+            <Font name="Times New Roman Bold" size="19.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="720.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../GestionRH/src/GUI/image/18542.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="TVEquipL" layoutX="209.0" layoutY="101.0" onMouseClicked="#selectionner" prefHeight="297.0" prefWidth="574.0">
+         <columns>
+            <TableColumn fx:id="colIdEquipL" prefWidth="50.0" text="ID" />
+            <TableColumn fx:id="colNomEquipL" prefWidth="82.0" text="Nom " />
+            <TableColumn fx:id="colPrixEquipL" prefWidth="70.0" text="Prix" />
+            <TableColumn fx:id="colDescriptionEquipL" prefWidth="94.0" text="Description" />
+            <TableColumn fx:id="colImageEquipL" prefWidth="65.0" text="Image" />
+            <TableColumn fx:id="colIdFEquipL" prefWidth="114.0" text="ID Fournisseur" />
+            <TableColumn fx:id="colDisponibiliteEquipL" prefWidth="98.0" text="Disopnibilite" />
+         </columns>
+      </TableView>
+      <Label layoutX="326.0" layoutY="33.0" prefHeight="53.0" prefWidth="341.0" text="Equipement à louer">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <TableView fx:id="TVRetardCkient" layoutX="232.0" layoutY="412.0" prefHeight="147.0" prefWidth="319.0">
+        <columns>
+          <TableColumn fx:id="colNomClient" prefWidth="92.0" text="Nom Client" />
+          <TableColumn fx:id="colNomEquipL1" prefWidth="137.0" text="Nom Equipement" />
+            <TableColumn fx:id="colNbJours" prefWidth="89.0" text="Nb jours" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

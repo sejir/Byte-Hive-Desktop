@@ -13,12 +13,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author user
  */
 public class EquipementVendreCRUD {
+    
+   
     public void ajouterEquipementVendre(EquipementVendre ev){
         try {
             String requete = "INSERT INTO equipementvendre(nomEquipement,prixEquipement,descriptionEquipement,imageEquipement,quantiteEquipement,idFournisseur) VALUES(?,?,?,?,?,?)";
@@ -36,10 +40,10 @@ public class EquipementVendreCRUD {
             System.out.println(ex.getMessage());            
         }
     }
-    public List<EquipementVendre> listerEquipementVendre(){
-        List<EquipementVendre> myList = new ArrayList();
+    public ObservableList<EquipementVendre> listerEquipementVendre(){
+        ObservableList<EquipementVendre> myList = FXCollections.observableArrayList();
         try {
-            String requete = "SELECT * FROM equipementvendre";
+            String requete = "SELECT * FROM equipementvendre ";
             Statement st= MyConnetion.getInstance().getCnx().prepareStatement(requete);
             ResultSet rs = st.executeQuery(requete);
             while(rs.next()){
@@ -62,7 +66,7 @@ public class EquipementVendreCRUD {
     public void modifierEquipementVendre(int id ,EquipementVendre ev)    {
      
  
-        String requete = "UPDATE equipementvendre SET nomEquipement=?,prixEquipement=?,descriptionEquipement=?, imageEquipement=? , quantiteEquipement=? WHERE idEquipement =" + id;
+        String requete = "UPDATE equipementvendre SET nomEquipement=?,prixEquipement=?,descriptionEquipement=?, imageEquipement=? , quantiteEquipement=? ,idFournisseur=? WHERE idEquipement =" + id;
     
         try {
             PreparedStatement pst= MyConnetion.getInstance().getCnx().prepareStatement(requete);
@@ -71,7 +75,8 @@ public class EquipementVendreCRUD {
             pst.setString(3, ev.getDescriptionEquipement());
             pst.setString(4, ev.getImageEquipement());
             pst.setInt(5, ev.getQuantiteEquipement());
-             
+            pst.setInt(6, ev.getIdFournisseur());
+
             pst.executeUpdate();
             System.out.println("equipement modifier");
         } catch (SQLException ex) {
@@ -91,20 +96,25 @@ public class EquipementVendreCRUD {
         }
     }
     
-    public float calculChiffreAffaire(){
-        String requete = "select sum(quantiteEquipement*prixEquipement) from equipementvendre";
-        float f = 0;
+    public ObservableList<EquipementVendre> calculChiffreAffaire(){
+        ObservableList<EquipementVendre> myList = FXCollections.observableArrayList();
+        String requete = "select nomEquipement,quantiteEquipement*prixEquipement from equipementvendre";
         try {
             PreparedStatement pst= MyConnetion.getInstance().getCnx().prepareStatement(requete);
              ResultSet rs = pst.executeQuery();
              while(rs.next()){
-                f=rs.getFloat(1);
+                EquipementVendre ev = new EquipementVendre();
+                ev.setNomEquipement(rs.getString(1));
+                ev.setPrixEquipement(rs.getFloat(2));
+                myList.add(ev);
              }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());            
         }
         
-        return f ;
+        return myList ;
         
     } 
+    
+    
 }

@@ -26,8 +26,8 @@ public class MainClass {
         EquipementLouerCRUD elc = new EquipementLouerCRUD();
 
 
-        EquipementLouer el1 = new EquipementLouer(1,"tezdazdazdnte",33,"pour camping","url image",new Date(1, 10, 10),new Date(1, 10, 10),5,1,1);
-        EquipementLouer el2 = new EquipementLouer(1,"sac de couchage",20,"pour homme","url image",5,2,1);
+        EquipementLouer el1 = new EquipementLouer(1,"tezdazdazdnte",33,"pour camping","url image",1,1);
+        EquipementLouer el2 = new EquipementLouer(1,"sac de couchage",20,"pour homme","url image",2,1);
         EquipementVendre ev1 = new EquipementVendre(0, "tente", 100,"pour camping","url image", 9, 9);
         EquipementVendre ev2 = new EquipementVendre(0, "sac ", 50," pour homme","url image", 9, 20);
         
