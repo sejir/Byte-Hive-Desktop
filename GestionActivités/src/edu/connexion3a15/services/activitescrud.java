@@ -108,6 +108,10 @@ System.out.println(k.getMessage());         }
             System.out.println(ex.getMessage());            
         }
     }
+    
+    
+    
+    
  /*
   public   List <activites> dupli(){
         
@@ -205,4 +209,22 @@ System.out.println(k.getMessage());         }
         return list;
         
     } 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 }

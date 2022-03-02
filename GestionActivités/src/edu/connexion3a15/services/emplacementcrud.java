@@ -14,6 +14,8 @@ import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -42,9 +44,9 @@ public class emplacementcrud {
     
     
      
-   public   List <emplacement> listeremplacement(){
+   public   ObservableList <emplacement> listeremplacement(){
         
-      List <emplacement> list = new ArrayList<>();
+      ObservableList <emplacement> list =  FXCollections.observableArrayList();
         try{
             
             String requete = "SELECT * FROM localisation"  ;

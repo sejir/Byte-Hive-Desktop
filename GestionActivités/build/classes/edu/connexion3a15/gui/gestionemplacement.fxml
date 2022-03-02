@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: FFF8DC;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="edu.connexion3a15.gui.GestionemplacementController">
+   <children>
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="74.0" prefWidth="134.0" spacing="15.0">
+         <children>
+            <Label text="nom d'emplacement">
+               <font>
+                  <Font name="Baloo" size="14.0" />
+               </font>
+            </Label>
+            <Label text="description emplacement">
+               <font>
+                  <Font name="Baloo" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="153.0" layoutY="14.0" prefHeight="86.0" prefWidth="134.0" spacing="15.0">
+         <children>
+            <TextField fx:id="tfnemplacement" promptText="nom specifique " />
+            <TextField fx:id="tfdemplacement" prefHeight="55.0" prefWidth="134.0" promptText="description de lespace" />
+         </children>
+      </VBox>
+      <TableView fx:id="tvemplacement" layoutX="405.0" layoutY="77.0" onMouseClicked="#selectrow" prefHeight="200.0" prefWidth="294.0">
+        <columns>
+          <TableColumn fx:id="tvlemplacement" prefWidth="145.0" text="emplacement" />
+          <TableColumn fx:id="tvldescription" prefWidth="148.0" text="descirption" />
+        </columns>
+      </TableView>
+      <Label layoutX="518.0" layoutY="34.0" text="emplacement">
+         <font>
+            <Font name="Baloo" size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="101.0" layoutY="152.0" mnemonicParsing="false" onAction="#modifieremplacement" text="modifier" />
+      <Button layoutX="14.0" layoutY="152.0" mnemonicParsing="false" onAction="#ajouteremplacement" text="ajouter" />
+      <Button layoutX="213.0" layoutY="152.0" mnemonicParsing="false" onAction="#supprimeremplacement" text="supprimer" />
+   </children>
+</AnchorPane>
