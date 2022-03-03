@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.SprintJava2.views;
+package GUI;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,31 +20,23 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author chayma
+ * @author Sejir
  */
-public class NewFXMain extends Application {
+public class FirstWindow extends Application {
     
-    public static Stage _stage;
-    public static NewFXMain _self;
     @Override
     public void start(Stage primaryStage) {
-          _stage = primaryStage;
-          _self = this;
-          setScene("InterfaceLogin");
-    }
-    public static void setScene(String sceneName)
-    {
+        Parent root=null;
         try {
-            Parent root = FXMLLoader.load(_self.getClass().getResource(sceneName + ".fxml"));
-            //Parent root = FXMLLoader.load(getClass().getResource("InterfaceAdmin.fxml"));
-
+            root = FXMLLoader.load(getClass().getResource("Ajouter Cabine .fxml"));
             Scene scene = new Scene(root);
-            _stage.setScene(scene);
-            _stage.show();
+            primaryStage.setTitle("Ajouter Cabine!");
+            primaryStage.setScene(scene);
+            primaryStage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        }
-    }
+        } 
+    }  
 
     /**
      * @param args the command line arguments
