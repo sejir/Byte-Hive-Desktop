@@ -5,6 +5,11 @@
  */
 package edu.SprintJava2.views;
 
+import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -15,6 +20,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -30,6 +37,24 @@ public class NewFXMain extends Application {
           _self = this;
           setScene("InterfaceLogin");
     }
+     public static BufferedImage iconToImage(Icon icon) {
+   if (icon instanceof ImageIcon) {
+      return (BufferedImage)((ImageIcon)icon).getImage();
+   } 
+   else {
+      int w = icon.getIconWidth();
+      int h = icon.getIconHeight();
+       GraphicsEnvironment ge = 
+        GraphicsEnvironment.getLocalGraphicsEnvironment();
+       GraphicsDevice gd = ge.getDefaultScreenDevice();
+       GraphicsConfiguration gc = gd.getDefaultConfiguration();
+       BufferedImage image = gc.createCompatibleImage(w, h);
+       Graphics2D g = image.createGraphics();
+      icon.paintIcon(null, g, 0, 0);
+      g.dispose();
+      return image;
+   }
+ }
     public static void setScene(String sceneName)
     {
         try {

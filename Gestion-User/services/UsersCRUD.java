@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import edu.SprintJava2.services.UsersSession;
+import javax.swing.JFrame;
 
 /**
  *
@@ -115,13 +116,16 @@ public class UsersCRUD {
             pst.setString(2, password);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {  
-                JOptionPane.showMessageDialog(null, "EMAIL AND PASSWORD MATCHED 🙂");
+                JOptionPane.showMessageDialog(null, "EMAIL AND PASSWORD MATCHED 🙂", "Login Valid", JOptionPane.INFORMATION_MESSAGE);
                 cUserId = rs.getInt("id");
                 cUserRow = rs;
                 UsersSession.addUserLogin(cUserRow);
             } else {
                 checkUser = false;
-                JOptionPane.showMessageDialog(null, "EMAIL OR PASSWORD DO NOT MATCH");
+                    JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+                    frame.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(frame, "EMAIL OR PASSWORD DO NOT MATCH", "Login Invalid", JOptionPane.ERROR_MESSAGE);
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(UsersCRUD.class.getName()).log(Level.SEVERE, null, ex);

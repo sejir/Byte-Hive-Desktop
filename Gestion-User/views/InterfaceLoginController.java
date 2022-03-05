@@ -5,6 +5,7 @@
  */
 package edu.SprintJava2.views;
 
+import co.yogesh.Captcha;
 import edu.SprintJava2.entities.Users;
 import edu.SprintJava2.services.UsersCRUD;
 import edu.SprintJava2.services.UsersSession;
@@ -18,6 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -35,6 +37,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.validation.ValidationSupport;
@@ -74,7 +77,11 @@ public class InterfaceLoginController implements Initializable {
     private ComboBox<String> combobox1;
     ObservableList<String> list = FXCollections.observableArrayList("Provider","Host","Camper");
     ValidationSupport validationSupport = new ValidationSupport();
-    
+    @FXML
+    private TextField captchainput;
+    @FXML
+    private ImageView captchagenerate;
+    private JLabel tempLabel;
 
 
     /**
@@ -84,9 +91,11 @@ public class InterfaceLoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
       combobox1.setItems(list);
-      // validationSupport.registerValidator(TFname,Validator.createEmptyValidator("name is required"));
-       // validationSupport.registerValidator(TFlastname,Validator.createEmptyValidator("lastname is required"));
-
+ 
+  tempLabel = new JLabel();
+       
+        cap.setImageCaptcha(tempLabel);
+        captchagenerate.setImage(SwingFXUtils.toFXImage(NewFXMain.iconToImage(tempLabel.getIcon()),null));
     }    
 
     @FXML
@@ -150,15 +159,33 @@ JOptionPane.showMessageDialog(null,"enter a strong password that mus contains up
         }
     }
     
-
+  Captcha cap = new Captcha();
     @FXML
     private void validate(ActionEvent event) throws Exception{
         Users u = new Users(); 
         UsersCRUD cc = new UsersCRUD(); 
        String access = (combobox1.getItems().toString());
+         if(cap.Validate(tempLabel, captchainput.getText()))
+       {
+           System.out.println("captcha valid");
+       }else
+       {
+           System.out.println("captcha invalid");
+           
+        cap.setImageCaptcha(tempLabel);
+        captchagenerate.setImage(SwingFXUtils.toFXImage(NewFXMain.iconToImage(tempLabel.getIcon()),null));
+
+           return;
+       }
 
         
         boolean result = UsersCRUD.Login(TFemail2.getText(), TFpassword2.getText());
+        
+        if(!result)
+        {
+            return;
+        }
+        
         if((UsersSession.getRole().equals("Admin")) && (true==result))
         {
          NewFXMain.setScene("InterfaceAdmin");    
