@@ -116,7 +116,9 @@ public class UsersCRUD {
             pst.setString(2, password);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {  
-                JOptionPane.showMessageDialog(null, "EMAIL AND PASSWORD MATCHED 🙂", "Login Valid", JOptionPane.INFORMATION_MESSAGE);
+                 JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+                 frame.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(frame, "EMAIL AND PASSWORD MATCHED 🙂", "Login Valid", JOptionPane.INFORMATION_MESSAGE);
                 cUserId = rs.getInt("id");
                 cUserRow = rs;
                 UsersSession.addUserLogin(cUserRow);

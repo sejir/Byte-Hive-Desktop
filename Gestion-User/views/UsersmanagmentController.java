@@ -40,19 +40,13 @@ public class UsersmanagmentController implements Initializable {
     @FXML
     private TableView<Users> tableusers;
     @FXML
-    private TableColumn<Users, Integer> colid;
-    @FXML
     private TableColumn<Users,String> colname;
     @FXML
     private TableColumn<Users, String> collastname;
     @FXML
     private TableColumn<Users, String> colemail;
-    @FXML
     private TableColumn<Users, String> colprofilepic;
-    @FXML
     private TableColumn<Users, String> colrole;
-    @FXML
-    private TextField filterdata;
    private final ObservableList<Users> dataList = FXCollections.observableArrayList();
 
     
@@ -69,17 +63,17 @@ public class UsersmanagmentController implements Initializable {
     @FXML
     private void resfreshuser() {
            UsersCRUD pp = new UsersCRUD();
-        colid.setCellValueFactory(new PropertyValueFactory<>("id"));
+        //colid.setCellValueFactory(new PropertyValueFactory<>("id"));
         colname.setCellValueFactory(new PropertyValueFactory<>("name"));
         collastname.setCellValueFactory(new PropertyValueFactory<>("lastname"));
         colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        colprofilepic.setCellValueFactory(new PropertyValueFactory<>("profilepicture"));
-        colrole.setCellValueFactory(new PropertyValueFactory<>("role"));
+        //colprofilepic.setCellValueFactory(new PropertyValueFactory<>("profilepicture"));
+        //colrole.setCellValueFactory(new PropertyValueFactory<>("role"));
         colname.setCellFactory(TextFieldTableCell.forTableColumn());
         collastname.setCellFactory(TextFieldTableCell.forTableColumn());
         colemail.setCellFactory(TextFieldTableCell.forTableColumn());
-        colprofilepic.setCellFactory(TextFieldTableCell.forTableColumn());
-        colrole.setCellFactory(TextFieldTableCell.forTableColumn());
+       // colprofilepic.setCellFactory(TextFieldTableCell.forTableColumn());
+        //colrole.setCellFactory(TextFieldTableCell.forTableColumn());
        
         
        tableusers.getItems().clear();

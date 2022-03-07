@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -19,23 +18,19 @@
                </font>
             </Label>
          </children></AnchorPane>
-      <Button layoutX="605.0" layoutY="467.0" mnemonicParsing="false" onAction="#resfreshuser" text="Refresh" />
-      <TableView fx:id="tableusers" layoutX="54.0" layoutY="231.0" prefHeight="287.0" prefWidth="534.0">
+      <Button layoutX="505.0" layoutY="539.0" mnemonicParsing="false" onAction="#resfreshuser" text="Refresh" />
+      <TableView fx:id="tableusers" layoutX="46.0" layoutY="243.0" prefHeight="327.0" prefWidth="437.0">
         <columns>
-          <TableColumn fx:id="colid" prefWidth="75.0" text="id" />
-          <TableColumn fx:id="colname" prefWidth="75.0" text="name" />
-            <TableColumn fx:id="collastname" prefWidth="75.0" text="lastname" />
-            <TableColumn fx:id="colemail" prefWidth="75.0" text="Email" />
-            <TableColumn fx:id="colprofilepic" prefWidth="143.0" text="profilepic" />
-            <TableColumn fx:id="colrole" prefWidth="88.0" text="role" />
+          <TableColumn fx:id="colname" prefWidth="135.0" text="name" />
+            <TableColumn fx:id="collastname" prefWidth="175.0" text="lastname" />
+            <TableColumn fx:id="colemail" minWidth="0.0" prefWidth="131.0" text="Email" />
         </columns>
       </TableView>
-      <Button layoutX="692.0" layoutY="467.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
-      <Label layoutX="26.0" layoutY="175.0" prefHeight="21.0" prefWidth="102.0" text="Search User">
+      <Button layoutX="589.0" layoutY="539.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
+      <Label layoutX="149.0" layoutY="187.0" text="List of Accounts">
          <font>
-            <Font name="System Bold" size="15.0" />
+            <Font name="System Bold" size="27.0" />
          </font>
       </Label>
-      <TextField fx:id="filterdata" layoutX="128.0" layoutY="170.0" prefHeight="31.0" prefWidth="325.0" promptText="keywords.." />
    </children>
 </AnchorPane>
