@@ -198,23 +198,7 @@ System.out.println(k.getMessage());         }
     
     
     
-    
-   public  void  smsreporting (String f) {
-   if (f!="0")
-   {
-        Twilio.init("AYVbHuVPWRd5KbDmwXhNXJ3oVZCgrUFbEn","cfc6175f3e3ce1efab1268d1d549a1b8");
-        String a = "votre prochaine evenemenet est le " ;
-        Message message = Message.creator(
-                new com.twilio.type.PhoneNumber("+21653940997"),
-                new com.twilio.type.PhoneNumber("+16812486427"),
-                "test" )
-            .create();
-
-        System.out.println(message.getSid());}
-    }
-    
-    
-    
+     
     
    public String reporting (){           
                   String requete="SELECT * FROM `act` WHERE d_debut <=(DATE_ADD(LOCALTIME, INTERVAL +1 DAY) )  order by d_debut limit 1";

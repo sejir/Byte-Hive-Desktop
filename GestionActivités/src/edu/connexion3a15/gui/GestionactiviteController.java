@@ -99,8 +99,11 @@ public class GestionactiviteController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        showactivites ();
+         showactivites ();
         search_act();
+      //  rep();
+      
+        
                  // System.out.print("test");
 
         
@@ -110,7 +113,10 @@ public class GestionactiviteController implements Initializable {
     
     
     
-    
+    public void rep (){
+    activitescrud act = new activitescrud();
+    act.reporting();
+    }
     
     
     
@@ -139,6 +145,8 @@ activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1,
        a.modifieractivites(act,z.getId_act());
         showactivites ();
               notif("modification en succés", "votre modification a été affectuée en succés");
+              
+              
         /*
           Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message.creator(

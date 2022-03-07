@@ -24,5 +24,5 @@ public class Mainclass {
         //pcd.delete(18);
      //String p="thinia";  
  // System.out.println (pcd.jointure(17));
-  pcd.reporting();
+  //pcd.smsreprting();
       }}
