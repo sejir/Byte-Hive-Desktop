@@ -7,7 +7,6 @@ package edu.SprintJava2.views;
 
 import co.yogesh.Captcha;
 import edu.SprintJava2.entities.Users;
-import edu.SprintJava2.services.BCrypt;
 import edu.SprintJava2.services.UsersCRUD;
 import edu.SprintJava2.services.UsersSession;
 import edu.SprintJava2.services.SendMail;
@@ -124,12 +123,11 @@ JOptionPane.showMessageDialog(null,"enter a strong password that mus contains up
             JOptionPane.showMessageDialog(null,"This mail is already used");
         } else {
         //JOptionPane.showMessageDialog(null,"Please wait we are creating your account");
-        String password = String.valueOf(TFpassword.getText());
         Users u = new Users();
         u.setName(TFname.getText());
         u.setLastname(TFlastname.getText());
         u.setEmail(TFemail.getText());
-        u.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
+        u.setPassword(TFpassword.getText());
         u.setRole(combobox1.getValue());
         u.setProfilePicture(cImageUrl);
         if(cc.ajouteruser(u))
