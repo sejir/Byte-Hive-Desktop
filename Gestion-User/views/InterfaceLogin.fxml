@@ -98,8 +98,9 @@
                   <Image url="file:/C:/Users/chayma/Downloads/eye.png" />
                </image>
             </ImageView>
-            <TextField fx:id="captchainput" layoutX="28.0" layoutY="299.0" prefHeight="31.0" prefWidth="207.0" />
-            <ImageView fx:id="captchagenerate" fitHeight="88.0" fitWidth="150.0" layoutX="44.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="captchainput" layoutX="132.0" layoutY="299.0" prefHeight="31.0" prefWidth="207.0" />
+            <ImageView fx:id="captchagenerate" fitHeight="88.0" fitWidth="150.0" layoutX="132.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="36.0" layoutY="304.0" text="Verify Code" textFill="#030303" />
          </children>
       </AnchorPane>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="318.0" layoutX="522.0" layoutY="190.0" stroke="BLACK" strokeType="INSIDE" style="-fx-arc-height: ADC47F;" width="14.0">

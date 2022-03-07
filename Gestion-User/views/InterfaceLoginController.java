@@ -7,6 +7,7 @@ package edu.SprintJava2.views;
 
 import co.yogesh.Captcha;
 import edu.SprintJava2.entities.Users;
+import edu.SprintJava2.services.BCrypt;
 import edu.SprintJava2.services.UsersCRUD;
 import edu.SprintJava2.services.UsersSession;
 import edu.SprintJava2.services.SendMail;
@@ -37,6 +38,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import org.controlsfx.control.Notifications;
@@ -96,6 +98,8 @@ public class InterfaceLoginController implements Initializable {
        
         cap.setImageCaptcha(tempLabel);
         captchagenerate.setImage(SwingFXUtils.toFXImage(NewFXMain.iconToImage(tempLabel.getIcon()),null));
+         JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+                    frame.setAlwaysOnTop(true);
     }    
 
     @FXML
@@ -119,12 +123,13 @@ JOptionPane.showMessageDialog(null,"enter a strong password that mus contains up
         } else if (!cc.validateEmail(TFemail.getText())) {
             JOptionPane.showMessageDialog(null,"This mail is already used");
         } else {
-        JOptionPane.showMessageDialog(null,"Please wait we are creating your account");
+        //JOptionPane.showMessageDialog(null,"Please wait we are creating your account");
+        String password = String.valueOf(TFpassword.getText());
         Users u = new Users();
         u.setName(TFname.getText());
         u.setLastname(TFlastname.getText());
         u.setEmail(TFemail.getText());
-        u.setPassword(TFpassword.getText());
+        u.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
         u.setRole(combobox1.getValue());
         u.setProfilePicture(cImageUrl);
         if(cc.ajouteruser(u))
