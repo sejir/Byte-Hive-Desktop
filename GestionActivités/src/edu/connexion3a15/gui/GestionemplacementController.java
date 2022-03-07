@@ -43,9 +43,13 @@ public class GestionemplacementController implements Initializable {
     @FXML
     private TableColumn<emplacement, String> tvldescription;
     @FXML
-    private TableColumn<emplacement, String> tvnact;
-    @FXML
     private TableView<emplacement> tvemplacement;
+    @FXML
+    private TableColumn<activites, String> empcount;
+    @FXML
+    private TableColumn<activites, String> count;
+    @FXML
+    private TableView<activites> tvcount;
 
     /**
      * Initializes the controller class.
@@ -55,7 +59,7 @@ public class GestionemplacementController implements Initializable {
         // TODO
         
         showemplacement ();
-        
+        count ();
     }    
 
     @FXML
@@ -119,6 +123,19 @@ public class GestionemplacementController implements Initializable {
         tvemplacement.setItems(list);
     }
     
+    public void count (){
+        
+     activitescrud  act = new activitescrud();
+     
+      ObservableList <activites> list = act.dupli();
+        empcount.setCellValueFactory(new PropertyValueFactory<activites,String>("emplacement"));
+         count.setCellValueFactory(new PropertyValueFactory<activites,String>("count"));
+         
+
+        //System.out.print("test");
+        tvcount.setItems(list);
+        
+    }
     
     
     

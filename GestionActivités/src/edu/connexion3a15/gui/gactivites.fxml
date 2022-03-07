@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: FFF8DC;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connexion3a15.gui.GestionactiviteController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #F0E68C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connexion3a15.gui.GestionactiviteController">
    <children>
-      <VBox layoutX="7.0" layoutY="8.0" prefHeight="168.0" prefWidth="131.0" spacing="10.0">
+      <VBox layoutX="7.0" layoutY="8.0" prefHeight="203.0" prefWidth="131.0" spacing="10.0">
          <children>
             <Label text="Nom activite">
                <font>
@@ -39,6 +39,7 @@
                   <Font name="Baloo" size="14.0" />
                </font>
             </Label>
+            <Label text="nombre participant" />
          </children>
       </VBox>
       <VBox layoutX="138.0" layoutY="8.0" prefHeight="168.0" prefWidth="126.0" spacing="10.0">
@@ -48,25 +49,28 @@
             <DatePicker fx:id="caldfinal" promptText="date final" />
             <TextField fx:id="txemplacement" promptText="ou l'activite" />
             <TextField fx:id="txdescirptionact" promptText="information" />
+            <TextField fx:id="tfnb_personne" prefHeight="41.0" prefWidth="126.0" />
          </children>
       </VBox>
-      <Label layoutX="324.0" layoutY="8.0" prefHeight="25.0" prefWidth="131.0" text="Nos activite">
+      <Label layoutX="464.0" layoutY="21.0" prefHeight="25.0" prefWidth="131.0" text="search">
          <font>
             <Font name="Baloo" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnmodifieract" layoutX="101.0" layoutY="194.0" mnemonicParsing="false" onAction="#modifieractivite" text="modifier" />
-      <Button fx:id="btnajouteract" layoutX="7.0" layoutY="194.0" mnemonicParsing="false" onAction="#ajouteractivite" text="ajouter" />
-      <Button fx:id="btnsupprimeract" layoutX="194.0" layoutY="194.0" mnemonicParsing="false" onAction="#supprimeractivite" text="supprimer" />
-      <TextField fx:id="filterField" layoutX="502.0" layoutY="80.0" />
-      <TableView fx:id="tvactivites" layoutX="324.0" layoutY="139.0" onMouseClicked="#selectrow" prefHeight="243.0" prefWidth="443.0">
+      <Button fx:id="btnmodifieract" layoutX="100.0" layoutY="251.0" mnemonicParsing="false" onAction="#modifieractivite" text="modifier" />
+      <Button fx:id="btnajouteract" layoutX="11.0" layoutY="251.0" mnemonicParsing="false" onAction="#ajouteractivite" text="ajouter" />
+      <Button fx:id="btnsupprimeract" layoutX="194.0" layoutY="251.0" mnemonicParsing="false" onAction="#supprimeractivite" text="supprimer" />
+      <TextField fx:id="filterField" layoutX="564.0" layoutY="21.0" promptText="recherche" />
+      <TableView fx:id="tvactivites" layoutX="275.0" layoutY="55.0" onMouseClicked="#selectrow" prefHeight="243.0" prefWidth="494.0">
         <columns>
           <TableColumn fx:id="tvnomact" prefWidth="62.0" text="Nom Activite" />
             <TableColumn fx:id="tvdebut" prefWidth="81.0" text="date debut" />
             <TableColumn fx:id="tvdatefinal" prefWidth="89.0" text="Cloture" />
-            <TableColumn fx:id="tvemplacement" prefWidth="94.0" text="emplacement" />
-            <TableColumn fx:id="tvdescact" prefWidth="116.0" text="description" />
+            <TableColumn fx:id="tvemplacement" prefWidth="69.0" text="emplacement" />
+            <TableColumn fx:id="tvdescact" prefWidth="106.0" text="description" />
+            <TableColumn fx:id="tvnombrepers" prefWidth="106.0" text="nombre" />
         </columns>
       </TableView>
+      <Button fx:id="suggestionbtn" layoutX="138.0" layoutY="211.0" mnemonicParsing="false" onAction="#suggestion" prefHeight="25.0" prefWidth="126.0" text="suggestion selon nombre" />
    </children>
 </AnchorPane>

@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: FFF8DC;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="edu.connexion3a15.gui.GestionemplacementController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #F0E68C;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connexion3a15.gui.GestionemplacementController">
    <children>
       <VBox layoutX="14.0" layoutY="14.0" prefHeight="74.0" prefWidth="134.0" spacing="15.0">
          <children>
@@ -32,10 +31,10 @@
             <TextField fx:id="tfdemplacement" prefHeight="55.0" prefWidth="134.0" promptText="description de lespace" />
          </children>
       </VBox>
-      <TableView fx:id="tvemplacement" layoutX="405.0" layoutY="77.0" onMouseClicked="#selectrow" prefHeight="200.0" prefWidth="294.0">
+      <TableView fx:id="tvemplacement" layoutX="313.0" layoutY="65.0" onMouseClicked="#selectrow" prefHeight="220.0" prefWidth="219.0">
         <columns>
-          <TableColumn fx:id="tvlemplacement" prefWidth="145.0" text="emplacement" />
-          <TableColumn fx:id="tvldescription" prefWidth="148.0" text="descirption" />
+          <TableColumn fx:id="tvlemplacement" prefWidth="91.0" text="emplacement" />
+          <TableColumn fx:id="tvldescription" prefWidth="127.0" text="descirption" />
         </columns>
       </TableView>
       <Label layoutX="518.0" layoutY="34.0" text="emplacement">
@@ -46,5 +45,11 @@
       <Button layoutX="101.0" layoutY="152.0" mnemonicParsing="false" onAction="#modifieremplacement" text="modifier" />
       <Button layoutX="14.0" layoutY="152.0" mnemonicParsing="false" onAction="#ajouteremplacement" text="ajouter" />
       <Button layoutX="213.0" layoutY="152.0" mnemonicParsing="false" onAction="#supprimeremplacement" text="supprimer" />
+      <TableView fx:id="tvcount" layoutX="542.0" layoutY="65.0" prefHeight="220.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="empcount" prefWidth="98.0" text="emplacement" />
+          <TableColumn fx:id="count" prefWidth="101.0" text="count" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

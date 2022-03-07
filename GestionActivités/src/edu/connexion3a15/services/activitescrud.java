@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package edu.connexion3a15.services;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
 import edu.connexion3a15.utiles.Myconnection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -13,6 +15,8 @@ import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -25,7 +29,7 @@ public class activitescrud {
     
     public void ajouteractivites(activites a){
         try {
-            String requete = "INSERT INTO act(nom_act,description,d_debut,d_fin,emplacement,idemplacement) VALUES(?,?,?,?,?,?)";
+            String requete = "INSERT INTO act(nom_act,description,d_debut,d_fin,emplacement,idemplacement,nb_personne) VALUES(?,?,?,?,?,?,?)";
             PreparedStatement pst= Myconnection.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1, a.getNom_act());
             pst.setString(2, a.getDescription());
@@ -33,6 +37,7 @@ public class activitescrud {
             pst.setDate(4, a.getD_fin());
             pst.setString(5, a.getEmplacement());
             pst.setInt(6, a.getIdemplacement());
+            pst.setInt(7, a.getNb_personne());
             pst.executeUpdate();
             System.out.println("Element Ajouté!");                        
         } catch (SQLException ex) {
@@ -61,6 +66,7 @@ public class activitescrud {
             a.setD_fin(rs.getDate("d_fin"));
             a.setEmplacement(rs.getString("emplacement"));
             a.setIdemplacement(rs.getInt("idemplacement"));
+            a.setNb_personne(rs.getInt("nb_personne"));
                 
                      list.add(a);
 
@@ -93,7 +99,7 @@ System.out.println(k.getMessage());         }
  
     public void modifieractivites(activites a, int z){
         try {
-            String requete =  "UPDATE act SET nom_act = ?, description = ?, d_debut = ?,d_fin = ?,emplacement = ? , idemplacement= ? WHERE id_act ="+z;
+            String requete =  "UPDATE act SET nom_act = ?, description = ?, d_debut = ?,d_fin = ?,emplacement = ? , idemplacement= ?, nb_personne=? WHERE id_act ="+z;
            
             PreparedStatement pst= Myconnection.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1, a.getNom_act());
@@ -102,6 +108,7 @@ System.out.println(k.getMessage());         }
             pst.setDate(4, a.getD_fin());
             pst.setString(5, a.getEmplacement());
             pst.setInt(6, a.getIdemplacement());
+            pst.setInt(7, a.getNb_personne());
             pst.executeUpdate();
             System.out.println("Element MODIFIER!");                        
         } catch (SQLException ex) {
@@ -111,14 +118,13 @@ System.out.println(k.getMessage());         }
     
     
     
-    
- /*
-  public   List <activites> dupli(){
+  
+  public   ObservableList <activites> dupli(){
         
-      List <activites> list = new ArrayList<>();
-        try{
+ ObservableList <activites> list =  FXCollections.observableArrayList();        
+ try{
             
-            String requete = "SELECT nom_act, COUNT(nom_act) FROM act GROUP BY nom_act HAVING COUNT(nom_act)"  ;
+            String requete = " SELECT emplacement, COUNT(emplacement) FROM act GROUP BY nom_act HAVING COUNT(emplacement)"  ;
             Statement pste = Myconnection.getInstance().getCnx().createStatement();
             ResultSet rs =  pste.executeQuery(requete);
              while (rs.next()){
@@ -126,8 +132,9 @@ System.out.println(k.getMessage());         }
                 
            activites a = new activites() ;
          
-            a.setNom_act(rs.getString("nom_act"));
-            rs.getInt(2);
+            a.setEmplacement(rs.getString(1));
+            a.setCount(rs.getString(2));
+          rs.getInt(2);
             
             list.add(a);
 
@@ -140,7 +147,7 @@ System.out.println(k.getMessage());         }
         return list;
         
     } 
-     */
+     
  
     
     
@@ -175,8 +182,89 @@ System.out.println(k.getMessage());         }
         
     } 
  
+
+    public  void  sms () {
     
- 
+        Twilio.init("AC692fa849b80bef1ce8d79f6fe8b04767","cfc6175f3e3ce1efab1268d1d549a1b8");
+        Message message = Message.creator(
+                new com.twilio.type.PhoneNumber("+21653940997"),
+                new com.twilio.type.PhoneNumber("+16812486427"),
+                 "votre activitée a été ajoutée avec succés"  )
+            .create();
+
+        System.out.println(message.getSid());
+    }
+
+    
+    
+    
+    
+   public  void  smsreporting (String f) {
+   if (f!="0")
+   {
+        Twilio.init("AYVbHuVPWRd5KbDmwXhNXJ3oVZCgrUFbEn","cfc6175f3e3ce1efab1268d1d549a1b8");
+        String a = "votre prochaine evenemenet est le " ;
+        Message message = Message.creator(
+                new com.twilio.type.PhoneNumber("+21653940997"),
+                new com.twilio.type.PhoneNumber("+16812486427"),
+                "test" )
+            .create();
+
+        System.out.println(message.getSid());}
+    }
+    
+    
+    
+    
+   public String reporting (){           
+                  String requete="SELECT * FROM `act` WHERE d_debut <=(DATE_ADD(LOCALTIME, INTERVAL +1 DAY) )  order by d_debut limit 1";
+
+                String ret = null ;
+        try {
+           
+            
+            Statement pste = Myconnection.getInstance().getCnx().createStatement();
+            ResultSet rs =  pste.executeQuery(requete);
+            while (rs.next()){
+                
+               
+               ret= rs.getString("d_debut"); 
+             }
+        }
+       
+        catch (SQLException ex) {
+            Logger.getLogger(activitescrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (ret!=null) { 
+        return  ret ;
+       }else
+            return "0";
+   } 
+
+   
+    
+ public String suggestion(int nb){
+     String a ="";
+     String s="SELECT nom_act FROM `act` GROUP BY nom_act,nb_personne HAVING nb_personne = "+nb;
+     String f = "ORDER BY COUNT(*) DESC limit 1 ";
+     try{
+            
+            String requete =s  ;
+            Statement pste = Myconnection.getInstance().getCnx().createStatement();
+            ResultSet rs =  pste.executeQuery(requete);
+            while (rs.next()){
+                
+            a= rs.getString("d_debut");
+            }
+         
+        }
+
+        catch(SQLException k){
+System.out.println(k.getMessage());         }
+        return a;
+        
+ }
     
     
      public   List <activites> jointure(int p){

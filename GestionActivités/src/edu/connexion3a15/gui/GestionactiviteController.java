@@ -5,6 +5,17 @@
  */
 package edu.connexion3a15.gui;
 
+import com.notification.NotificationFactory;
+import com.notification.NotificationFactory.Location;
+import com.notification.NotificationManager;
+import com.notification.manager.SimpleManager;
+import com.notification.types.TextNotification;
+import com.tfgco.pushnotification.PushNotification;
+import com.theme.ThemePackagePresets;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+import com.utils.Time;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -19,6 +30,8 @@ import edu.connexion3a15.utiles.Myconnection;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -36,6 +49,12 @@ import javafx.scene.input.MouseEvent;
  */
 public class GestionactiviteController implements Initializable {
 
+    
+    
+        public static final String ACCOUNT_SID = "AC692fa849b80bef1ce8d79f6fe8b04767";
+    public static final String AUTH_TOKEN = "cfc6175f3e3ce1efab1268d1d549a1b8";
+    
+    
     @FXML
     private TextField txnomact;
     @FXML
@@ -68,6 +87,13 @@ public class GestionactiviteController implements Initializable {
     private TextField filterField;
   ObservableList<activites> listM;
     ObservableList<activites> dataList;
+    private TextField nb_personne;
+    @FXML
+    private TextField tfnb_personne;
+    @FXML
+    private TableColumn<activites, Integer> tvnombrepers;
+    @FXML
+    private Button suggestionbtn;
     /**
      * Initializes the controller class.
      */
@@ -75,7 +101,7 @@ public class GestionactiviteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         showactivites ();
         search_act();
-               // System.out.print("test");
+                 // System.out.print("test");
 
         
         
@@ -101,14 +127,31 @@ public class GestionactiviteController implements Initializable {
         String emplacament = txemplacement.getText() ; 
         Date  d_debut = Date.valueOf(calddebut.getValue());
         Date d_fin = Date.valueOf(caldfinal.getValue());
+          int nb_personne = Integer.parseInt(tfnb_personne.getText());
          
-activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1);   
-
-         if ((calddebut.getValue() == null)||( caldfinal.getValue()==null)|| (caldfinal.getValue()==null)) {
-             System.out.println("erreur date");   
+          
+activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1,nb_personne);
+   // Date now = Date.parse(today);  
+          if ((calddebut.getValue() == null)&&( caldfinal.getValue()==null)&&(caldfinal.getValue()==null) && ( (act.d_debut).after(act.d_fin))/* || ( (act.d_debut).before(now))*/) {
+              notif("erreur en modification ", "verifier vos champs svp");
+            
         }else {
        a.modifieractivites(act,z.getId_act());
         showactivites ();
+              notif("modification en succés", "votre modification a été affectuée en succés");
+        /*
+          Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        Message message = Message.creator(
+                new com.twilio.type.PhoneNumber("+21653940997"),
+                new com.twilio.type.PhoneNumber("+16812486427"),
+                "?")
+            .create();
+        /*
+        
+        */
+        
+            //  a.sms();
+
      }}
 
     @FXML
@@ -119,20 +162,32 @@ activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1)
         String emplacament = txemplacement.getText() ; 
         Date  d_debut = Date.valueOf(calddebut.getValue());
         Date d_fin = Date.valueOf(caldfinal.getValue());
-       // System.out.println(formatter.format(d_fin.getTime()));
-        
-         
-         
-activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1);   
+          int nb_personne = Integer.parseInt(tfnb_personne.getText());
+activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1,nb_personne);   
     
-         if ((calddebut.getValue() == null)||( caldfinal.getValue()==null)|| (caldfinal.getValue()==null)) {
-             System.out.println("erreur null");   
+         if ((calddebut.getValue() == null)&&( caldfinal.getValue()==null)&& (caldfinal.getValue()==null)&& ( (act.d_debut).after(act.d_fin))) {
+               notif("erreur","verifier votre champs svp");
+  
         }else {  activitescrud a = new activitescrud() ;
       a.ajouteractivites(act);
        showactivites ();
-        }}
-     
+        notif("Activité","Activité Ajoutée");
+        a.sms();
+        }
+   
+  
+
     
+    }
+     
+    void notif(String title, String subtitle){
+        NotificationFactory factory = new NotificationFactory(ThemePackagePresets.cleanLight());
+NotificationManager plain = new SimpleManager(Location.SOUTHEAST);
+
+TextNotification notification = factory.buildTextNotification(title,subtitle);
+notification.setCloseOnClick(true);
+plain.addNotification(notification, Time.seconds(4));
+    }
     
 
     @FXML
@@ -143,6 +198,8 @@ activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1)
        int selectedID = tvactivites.getSelectionModel().getSelectedIndex();
         tvactivites.getItems().remove(selectedID);
          showactivites ();
+              notif("suppression","suppression avec succés ");
+
     }
  
     public void showactivites (){
@@ -154,6 +211,7 @@ activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1)
         tvdatefinal.setCellValueFactory(new PropertyValueFactory<activites,Date>("d_fin"));
         tvemplacement.setCellValueFactory(new PropertyValueFactory<activites,String>("emplacement"));
          tvdescact.setCellValueFactory(new PropertyValueFactory<activites,String>("description"));
+                  tvnombrepers.setCellValueFactory(new PropertyValueFactory<activites,Integer>("nb_personne"));
 
 
         //System.out.print("test");
@@ -171,10 +229,28 @@ activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1)
         txemplacement.setText(act.emplacement);
         txdescirptionact.setText(act.description);
         Date.valueOf(calddebut.getValue());
-        
+        tfnb_personne.setText( String.valueOf(act.nb_personne));
         
     }
+    
+    @FXML
+    void suggestion(ActionEvent event){
+        
+        activitescrud ac = new activitescrud();
+         txnomact.setText( ac.suggestion(Integer.parseInt(tfnb_personne.getText())));
+                txemplacement.setText( ac.suggestion(Integer.parseInt(tfnb_personne.getText())));
+
+ 
+    }
    
+    public void reportingsms (){
+            activitescrud ac = new activitescrud();
+            String a=ac.reporting();
+//.smsreporting( ac.reporting);
+    
+    }
+    
+    
     
     
     void search_act() {      
@@ -213,6 +289,16 @@ activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1)
   sortedData.comparatorProperty().bind(tvactivites.comparatorProperty());  
   tvactivites.setItems(sortedData);      
     }
+    
+    
+ 
+    
+    
+    
+    
+    
+    
+    
     }
     
 
