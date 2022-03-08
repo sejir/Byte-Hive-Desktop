@@ -29,7 +29,7 @@ public class activitescrud {
     
     public void ajouteractivites(activites a){
         try {
-            String requete = "INSERT INTO act(nom_act,description,d_debut,d_fin,emplacement,idemplacement,nb_personne) VALUES(?,?,?,?,?,?,?)";
+            String requete = "INSERT INTO act(nom_act,description,d_debut,d_fin,emplacement,idemplacement,nb_personne,id_user) VALUES(?,?,?,?,?,?,?,?)";
             PreparedStatement pst= Myconnection.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1, a.getNom_act());
             pst.setString(2, a.getDescription());
@@ -38,6 +38,7 @@ public class activitescrud {
             pst.setString(5, a.getEmplacement());
             pst.setInt(6, a.getIdemplacement());
             pst.setInt(7, a.getNb_personne());
+            pst.setInt(8, a.getId_user());
             pst.executeUpdate();
             System.out.println("Element Ajouté!");                        
         } catch (SQLException ex) {
@@ -67,6 +68,7 @@ public class activitescrud {
             a.setEmplacement(rs.getString("emplacement"));
             a.setIdemplacement(rs.getInt("idemplacement"));
             a.setNb_personne(rs.getInt("nb_personne"));
+           
                 
                      list.add(a);
 
@@ -84,7 +86,7 @@ System.out.println(k.getMessage());         }
  public void delete(int z) {
        try
        {
-           String requete="DELETE FROM act WHERE id_act =" +z ;
+           String requete="DELETE FROM act WHERE id_act ="+z ;
           PreparedStatement pste=Myconnection.getInstance().getCnx().prepareStatement(requete);
            if (pste.execute())
           { System.out.println("activité supprimer");}
@@ -99,7 +101,7 @@ System.out.println(k.getMessage());         }
  
     public void modifieractivites(activites a, int z){
         try {
-            String requete =  "UPDATE act SET nom_act = ?, description = ?, d_debut = ?,d_fin = ?,emplacement = ? , idemplacement= ?, nb_personne=? WHERE id_act ="+z;
+            String requete =  "UPDATE act SET nom_act = ?, description = ?, d_debut = ?,d_fin = ?,emplacement = ? , idemplacement= ?, nb_personne=?,id_user=? WHERE id_act ="+z;
            
             PreparedStatement pst= Myconnection.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1, a.getNom_act());
@@ -109,6 +111,7 @@ System.out.println(k.getMessage());         }
             pst.setString(5, a.getEmplacement());
             pst.setInt(6, a.getIdemplacement());
             pst.setInt(7, a.getNb_personne());
+            pst.setInt(8, a.getId_user());
             pst.executeUpdate();
             System.out.println("Element MODIFIER!");                        
         } catch (SQLException ex) {
@@ -184,16 +187,17 @@ System.out.println(k.getMessage());         }
  
 
     public  void  sms () {
-    
-        Twilio.init("AC692fa849b80bef1ce8d79f6fe8b04767","cfc6175f3e3ce1efab1268d1d549a1b8");
-        Message message = Message.creator(
+        String bu = reporting();
+        Twilio.init("AC692fa849b80bef1ce8d79f6fe8b04767","f58c00857427f18e068513449b40a182");
+       Message message;
+        message = Message.creator(
                 new com.twilio.type.PhoneNumber("+21653940997"),
                 new com.twilio.type.PhoneNumber("+16812486427"),
-                 "votre activitée a été ajoutée avec succés"  )
-            .create();
+                "vous avez une evenement le"+bu)
+                .create();
 
-        System.out.println(message.getSid());
-    }
+     }
+    
 
     
     

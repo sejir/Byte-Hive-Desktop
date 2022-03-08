@@ -14,6 +14,7 @@ import java.sql.Date;
 public class activites  {
      
     public int id_act;
+    public int id_user;
     public int nb_personne;
     public String nom_act;
     public String description;
@@ -29,7 +30,7 @@ public class activites  {
     }
     
     /**
-     *
+     * @param id_user
      * @param nom_act
      * @param description
      * @param d_debut
@@ -39,9 +40,10 @@ public class activites  {
      */
     
  
-    public activites( String nom_act,String description,Date d_debut ,Date d_fin,String emplacement,int idemplacement, int nb_personne){
+    public activites( String nom_act,String description,Date d_debut ,Date d_fin,String emplacement,int idemplacement, int nb_personne,int id_user){
     
     //this.id_act=id_act;
+    this.id_user=id_user;
     this.nom_act=nom_act;
     this.d_debut=d_debut;
     this.d_fin=d_fin;
@@ -51,6 +53,19 @@ public class activites  {
     this.nb_personne=nb_personne;
     }
 
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
+    
+    
+    
+    
+    
     public int getNb_personne() {
         return nb_personne;
     }
@@ -127,7 +142,7 @@ public class activites  {
     
     @Override
     public String toString() {
-        return "Id_act: "+id_act + " Nom_act: "+nom_act +" Emplacement:"+emplacement+"Description:"+description+"D_debut:"+d_debut+"D_fin:"+d_fin+"idemplacement:"+idemplacement;
+        return "Id_act: "+id_act + "Id_user: "+id_user + " Nom_act: "+nom_act +" Emplacement:"+emplacement+"Description:"+description+"D_debut:"+d_debut+"D_fin:"+d_fin+"idemplacement:"+idemplacement;
     }
 
     public String getCount() {

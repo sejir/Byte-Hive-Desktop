@@ -5,16 +5,17 @@
  */
 package edu.connexion3a15.gui;
 
+
+
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import com.notification.NotificationFactory;
 import com.notification.NotificationFactory.Location;
 import com.notification.NotificationManager;
 import com.notification.manager.SimpleManager;
 import com.notification.types.TextNotification;
-import com.tfgco.pushnotification.PushNotification;
 import com.theme.ThemePackagePresets;
-import com.twilio.Twilio;
-import com.twilio.rest.api.v2010.account.Message;
-import com.twilio.type.PhoneNumber;
 import com.utils.Time;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,7 +53,7 @@ public class GestionactiviteController implements Initializable {
     
     
         public static final String ACCOUNT_SID = "AC692fa849b80bef1ce8d79f6fe8b04767";
-    public static final String AUTH_TOKEN = "cfc6175f3e3ce1efab1268d1d549a1b8";
+    public static final String AUTH_TOKEN = "f58c00857427f18e068513449b40a182";
     
     
     @FXML
@@ -102,7 +103,9 @@ public class GestionactiviteController implements Initializable {
          showactivites ();
         search_act();
       //  rep();
-      
+      activitescrud a = new activitescrud();
+        
+        a.sms();
         
                  // System.out.print("test");
 
@@ -134,9 +137,10 @@ public class GestionactiviteController implements Initializable {
         Date  d_debut = Date.valueOf(calddebut.getValue());
         Date d_fin = Date.valueOf(caldfinal.getValue());
           int nb_personne = Integer.parseInt(tfnb_personne.getText());
-         
+          int id_user = 1;
+         //int id_user = setid_user
           
-activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1,nb_personne);
+activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1,nb_personne,id_user);
    // Date now = Date.parse(today);  
           if ((calddebut.getValue() == null)&&( caldfinal.getValue()==null)&&(caldfinal.getValue()==null) && ( (act.d_debut).after(act.d_fin))/* || ( (act.d_debut).before(now))*/) {
               notif("erreur en modification ", "verifier vos champs svp");
@@ -158,7 +162,7 @@ activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1,
         
         */
         
-            //  a.sms();
+             // a.sms();
 
      }}
 
@@ -171,7 +175,8 @@ activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1,
         Date  d_debut = Date.valueOf(calddebut.getValue());
         Date d_fin = Date.valueOf(caldfinal.getValue());
           int nb_personne = Integer.parseInt(tfnb_personne.getText());
-activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1,nb_personne);   
+           int id_user = 2;
+activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1,nb_personne,id_user);   
     
          if ((calddebut.getValue() == null)&&( caldfinal.getValue()==null)&& (caldfinal.getValue()==null)&& ( (act.d_debut).after(act.d_fin))) {
                notif("erreur","verifier votre champs svp");
@@ -180,7 +185,8 @@ activites act = new activites(nom_act, description,d_debut,d_fin, emplacament,1,
       a.ajouteractivites(act);
        showactivites ();
         notif("Activité","Activité Ajoutée");
-        a.sms();
+       
+       
         }
    
   
