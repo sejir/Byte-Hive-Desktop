@@ -130,16 +130,16 @@ public class ReclamationLocation {
     @Override
     public String toString() {
        
-        return " { Reclamation " +
-                "Number =" + id +
-                ", Client Id=" + id_client +
-                ", Location Id=" + id_localisation +
-                ", Description='" + description + '\'' +
-                ", Admin Respond='" + respond + '\'' +
-                ", Admin ID =" + id_admin +
-                ", Treated=" + status +" \n"+
-                ", Reclamation Date=" + reclamationdate +
-                '}';
+        return " { ReclamationL : " +
+                " Number = " + id +
+                ", Client Id = " + id_client +
+                ", Location Id = " + id_localisation +
+                ", Description = '" + description + '\'' +
+                ", Admin Respond = '" + respond + '\'' +
+                ", Admin ID = " + id_admin +
+                ", Treated = " + status +" \n"+
+                ", Reclamation Date = " + reclamationdate +
+                " }";
     }
     
 }

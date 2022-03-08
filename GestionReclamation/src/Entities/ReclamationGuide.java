@@ -131,15 +131,15 @@ public class ReclamationGuide {
     @Override
     public String toString() {
        
-        return " { Reclamation " +
-                "Number =" + id +
-                ", Client Id=" + id_client +
-                ", Guide Id=" + id_guide +
-                ", Description='" + description + '\'' +
-                ", Admin Respond='" + respond + '\'' +
-                ", Admin ID =" + id_admin +
-                ", Treated=" + status +" \n"+
-                ", Reclamation Date=" + reclamationdate +
-                '}';
+        return " { ReclamationG : " +
+                "Number = " + id +
+                ", Client Id = " + id_client +
+                ", Guide Id = " + id_guide +
+                ", Description = '" + description + '\'' +
+                ", Admin Respond = '" + respond + '\'' +
+                ", Admin ID = " + id_admin +
+                ", Treated = " + status +" \n"+
+                ", Reclamation Date = " + reclamationdate +
+                " }";
     }
 }

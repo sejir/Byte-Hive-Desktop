@@ -10,6 +10,14 @@ package Entities;
  * @author Feryel Derouich
  */
 public class Utilisateur {
+    private int id;
+
+    public Utilisateur() {
+    }
+    
+    public Utilisateur(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;
@@ -19,9 +27,5 @@ public class Utilisateur {
         this.id = id;
     }
 
-    public Utilisateur(int id) {
-        this.id = id;
-    }
-    private int id;
     
 }

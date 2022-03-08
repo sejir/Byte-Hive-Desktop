@@ -27,21 +27,21 @@ public class Main {
         // TODO code application logic here
         ReclamationLocationCRUD rec1= new ReclamationLocationCRUD();
         Utilisateur u1 = new Utilisateur(1);
-        Localisation loc1 = new Localisation(1);
+        Localisation loc1 = new Localisation(1,"Y");
         ReclamationLocation rl = new ReclamationLocation(u1.getId(),loc1.getId(),"This place rocks!");
         
-        rec1.insertReclamationL(rl);
+        //rec1.insertReclamationL(rl);
         
         
-        //List<ReclamationLocation> list = rec1.readReclamationUserL(u1);
+        List<ReclamationLocation> list = rec1.readReclamationUserL(u1);
         //System.out.println(list);
         
         //System.out.println(rec1.readReclamationAdminL());
         
         //System.out.println(rec1.deleteReclamationL(1));
         
-        ReclamationLocation rll = new ReclamationLocation(2,u1.getId(),"---",null,0,false,null,loc1.getId());
-        System.out.println(rec1.updateReclamationUserL(rll));
+        //ReclamationLocation rll = new ReclamationLocation(2,u1.getId(),"---",null,0,false,null,loc1.getId());
+        //System.out.println(rec1.updateReclamationUserL(rll));
         
         // ReclamationLocation forAdmin = new ReclamationLocation("Allah ghaleb cnx tayha",2,2);
         // System.out.println(rec1.updateReclamationAdminL(forAdmin));
@@ -54,7 +54,7 @@ public class Main {
     
         ReclamationGuideCRUD rec2= new ReclamationGuideCRUD();
         Utilisateur u2 = new Utilisateur(1);
-        Guide guide1 = new Guide(1);
+        Guide guide1 = new Guide(1,"x");
         ReclamationGuide rg = new ReclamationGuide(u2.getId(),guide1.getId(),"Professional guide!");
         //rec2.insertReclamationG(rg);
         
@@ -74,6 +74,8 @@ public class Main {
         
         //System.out.println(rec2.reclamationInfoG(2));
        
+        //System.out.println(rec2.listerGuides());
+        //System.out.println(rec1.listerLocalisations());
     }
     
 }

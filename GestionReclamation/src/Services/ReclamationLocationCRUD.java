@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entities.Localisation;
 import Entities.ReclamationLocation;
 import Entities.Utilisateur;
 import java.sql.Connection;
@@ -48,8 +49,8 @@ public class ReclamationLocationCRUD {
         ReclamationLocation rl =new ReclamationLocation();
         try {
             Connection cnx = MyConnection.getInstance().getCnx();
-            PreparedStatement preparedStmt = cnx.prepareStatement("SELECT * FROM reclamationlocalisation where id_client = ?");
-            preparedStmt.setInt(1, u.getId());
+            PreparedStatement preparedStmt = cnx.prepareStatement("SELECT * FROM reclamationlocalisation where id_client = 1");
+            //preparedStmt.setInt(1, u.getId());
             ResultSet rs = preparedStmt.executeQuery();
             while (rs.next()) {
                 rl.setId_client(u.getId());
@@ -74,17 +75,16 @@ public class ReclamationLocationCRUD {
         return list;
     }
     
-    public static List<ReclamationLocation> readReclamationAdminL()
-    {
-        List<ReclamationLocation> mylist= new ArrayList() ;
-        ReclamationLocation rl =new ReclamationLocation();
-        Statement st;
+    public List<ReclamationLocation> readReclamationAdminL() {
+        List<ReclamationLocation> myList = new ArrayList();
+        
         try {
-            Connection cnx = MyConnection.getInstance().getCnx();
-            PreparedStatement preparedStmt = cnx.prepareStatement("SELECT * FROM reclamationlocalisation");
-            ResultSet rs = preparedStmt.executeQuery();
-            while (rs.next()) {
 
+            String requete = "SELECT * FROM reclamationlocalisation";
+            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while (rs.next()) {
+                ReclamationLocation rl =new ReclamationLocation();
                 rl.setId((rs.getInt("id")));
                 rl.setId_client(rs.getInt("id_client"));
                 rl.setDescription((rs.getString("description")));
@@ -93,13 +93,15 @@ public class ReclamationLocationCRUD {
                 rl.setReclamationdate(rs.getDate("daterec"));
                 rl.setStatus(rs.getInt("status") != 0);
                 rl.setId_localisation(rs.getInt("id_localisation"));
-                mylist.add(rl);
+                myList.add(rl);
+
             }
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        System.out.print(mylist);
-        return mylist;
+
+        return myList;
     }
     
     public static boolean deleteReclamationL(int id)  {
@@ -204,5 +206,24 @@ public class ReclamationLocationCRUD {
             System.out.println(ex.getMessage());
             return rl;
         }
+    }
+    
+    public static List<Localisation> listerLocalisations() {
+        List<Localisation> listl = new ArrayList();
+        try{
+
+            String requete = "SELECT * FROM localisation";
+            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(requete);
+            while (rs.next()) {
+                Localisation l = new Localisation();
+                l.setId(rs.getInt(1));
+                l.setDescription(rs.getString("description"));
+                listl.add(l);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return listl;
     }
 }

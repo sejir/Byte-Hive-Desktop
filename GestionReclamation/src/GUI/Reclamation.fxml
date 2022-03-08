@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ReclamationController">
+   <children>
+      <Button fx:id="breclamation" layoutX="188.0" layoutY="96.0" mnemonicParsing="false" onAction="#switchToMesRec" prefHeight="25.0" prefWidth="225.0" text="Mes réclamations">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="brecguide" layoutX="188.0" layoutY="183.0" mnemonicParsing="false" onAction="#switchToRecG" prefHeight="25.0" prefWidth="225.0" text="Réclamation Guide">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="brecloc" layoutX="188.0" layoutY="271.0" mnemonicParsing="false" onAction="#switchToRecL" prefHeight="25.0" prefWidth="225.0" text="Réclamation Localisation">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label fx:id="labrec" layoutX="52.0" layoutY="37.0" prefHeight="28.0" prefWidth="152.0" text="Réclamation">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

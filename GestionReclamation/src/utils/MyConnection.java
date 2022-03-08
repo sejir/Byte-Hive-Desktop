@@ -5,9 +5,13 @@
  */
 package utils;
 
+import Entities.Guide;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -35,10 +39,11 @@ public class MyConnection {
     }
     
     public static MyConnection getInstance(){
-        if (instance ==null){
+        if (instance == null){
             instance = new MyConnection();
         }
         return instance;
     }
-     
+    
+    
 }

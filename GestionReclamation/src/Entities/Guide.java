@@ -12,12 +12,14 @@ package Entities;
 public class Guide {
     
     private int id;
+    public String nom;
 
     public Guide() {
     }
-
-    public Guide(int id) {
+    
+    public Guide(int id, String nom) {
         this.id = id;
+        this.nom = nom;
     }
 
     public void setId(int id) {
@@ -27,6 +29,21 @@ public class Guide {
     public int getId() {
         return id;
     }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getNom() {
+        return nom;
+    }
     
-    
+    @Override
+    public String toString() {
+       
+        return " { Guide : " +
+                "Number = " + id +
+                ", Nom = " + nom +
+                " }";
+    }
 }
