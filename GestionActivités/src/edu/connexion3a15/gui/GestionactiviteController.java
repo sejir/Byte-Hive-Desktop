@@ -105,7 +105,7 @@ public class GestionactiviteController implements Initializable {
       //  rep();
       activitescrud a = new activitescrud();
         
-        a.sms();
+        //a.sms();
         
                  // System.out.print("test");
 
