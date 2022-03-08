@@ -24,17 +24,23 @@ public class Firstwindowfinish extends Application {
     public void start(Stage primaryStage){
      
        
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("Ajouter.fxml"));
-            Scene scene = new Scene(root);
+    try {
+          
             
-            primaryStage.setTitle("Ajouter!");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            Parent root=FXMLLoader.load(getClass().getResource("Ajouter.fxml"));
+       
+           
+        
+        Scene scene = new Scene(root);
+        
+        primaryStage.setTitle("Hello World!");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    
+      
+         } catch (IOException ex) {
+            Logger.getLogger(Firstwindowfinish.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
      
     
     }

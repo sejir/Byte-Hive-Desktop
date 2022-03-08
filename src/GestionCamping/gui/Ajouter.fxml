@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="421.0" prefWidth="979.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionCamping.gui.AjouterController">
+   <children>
+      <Pane layoutX="429.0" layoutY="56.0" prefHeight="200.0" prefWidth="583.0">
+         <children>
+            <TableView fx:id="tevenement" layoutX="-27.0" layoutY="18.0" onMouseClicked="#selectrow" prefHeight="258.0" prefWidth="540.0">
+              <columns>
+                <TableColumn fx:id="tname" prefWidth="125.0" text="Name" />
+                <TableColumn fx:id="tlocation" prefWidth="134.0" text="Location" />
+                  <TableColumn fx:id="tdate" prefWidth="136.0" text="Date" />
+                  <TableColumn fx:id="tguide" prefWidth="143.0" text="Guide" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <Label layoutX="55.0" layoutY="99.0" text="Nom" />
+      <Label layoutX="57.0" layoutY="148.0" text="Location" />
+      <TextField fx:id="tfNom" layoutX="147.0" layoutY="94.0" />
+      <TextField fx:id="tfLocalisation" layoutX="147.0" layoutY="143.0" />
+      <Button fx:id="BtnValider" layoutX="158.0" layoutY="333.0" mnemonicParsing="false" onAction="#ajouterevenement" prefHeight="31.0" prefWidth="166.0" text="Valider" />
+      <Label layoutX="56.0" layoutY="200.0" text="Date" />
+      <Label layoutX="52.0" layoutY="245.0" text="Guide" />
+      <TextField fx:id="tfGuide" layoutX="148.0" layoutY="240.0" />
+      <Button fx:id="btnModifier" layoutX="733.0" layoutY="364.0" mnemonicParsing="false" onAction="#modifierevenement" prefHeight="31.0" prefWidth="105.0" text="Modifier" />
+      <Button fx:id="btnsupprimer" layoutX="848.0" layoutY="364.0" mnemonicParsing="false" onAction="#supprimevenement" prefHeight="31.0" prefWidth="105.0" text="Supprimer" />
+      <Label layoutX="305.0" layoutY="26.0" text="Search Here" textFill="LIGHTGREEN">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tsearch" layoutX="428.0" layoutY="24.0" onKeyReleased="#KeyReleased" prefHeight="31.0" prefWidth="517.0" />
+      <ImageView fx:id="QRCode" fitHeight="85.0" fitWidth="105.0" layoutX="21.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="pdf" layoutX="452.0" layoutY="364.0" mnemonicParsing="false" onAction="#imprimerpdf" text="PDF" />
+      <DatePicker fx:id="tfDate" layoutX="148.0" layoutY="203.0" prefHeight="31.0" prefWidth="166.0" />
+      <Button fx:id="QRCoe" layoutX="158.0" layoutY="38.0" mnemonicParsing="false" onAction="#QR" text="QRCode" />
+   </children>
+</AnchorPane>
