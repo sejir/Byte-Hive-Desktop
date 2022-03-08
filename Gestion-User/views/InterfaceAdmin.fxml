@@ -12,14 +12,14 @@
    <children>
       <AnchorPane layoutY="-6.0" prefHeight="636.0" prefWidth="200.0" style="-fx-background-color: ADC47F;">
          <children>
-            <Button fx:id="userpagebtn" layoutX="33.0" layoutY="94.0" mnemonicParsing="false" onAction="#userpage" prefHeight="31.0" prefWidth="116.0" text="Users" />
+            <Button fx:id="userpagebtn" layoutX="42.0" layoutY="135.0" mnemonicParsing="false" onAction="#userpage" prefHeight="31.0" prefWidth="116.0" text="Dashboard" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="adminpage" layoutX="200.0" prefHeight="106.0" prefWidth="842.0">
          <children>
             <Label fx:id="pagelabel" layoutX="33.0" layoutY="9.0" prefHeight="88.0" prefWidth="776.0" textFill="#c93d3d" />
             <Button fx:id="logoutbtn" layoutX="744.0" layoutY="22.0" mnemonicParsing="false" onAction="#logout" text="log out" />
-            <Label layoutX="24.0" layoutY="38.0" prefHeight="45.0" prefWidth="287.0" text="Welcome Admin">
+            <Label layoutX="24.0" layoutY="54.0" prefHeight="45.0" prefWidth="287.0" text="Welcome Admin">
                <font>
                   <Font size="30.0" />
                </font>

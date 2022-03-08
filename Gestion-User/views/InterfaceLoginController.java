@@ -7,6 +7,7 @@ package edu.SprintJava2.views;
 
 import co.yogesh.Captcha;
 import edu.SprintJava2.entities.Users;
+import edu.SprintJava2.services.BCrypt;
 import edu.SprintJava2.services.UsersCRUD;
 import edu.SprintJava2.services.UsersSession;
 import edu.SprintJava2.services.SendMail;
@@ -83,6 +84,7 @@ public class InterfaceLoginController implements Initializable {
     @FXML
     private ImageView captchagenerate;
     private JLabel tempLabel;
+     //String hashed = BCrypt.hashpw(TFpassword.getText(), BCrypt.gensalt());
 
 
     /**
@@ -102,7 +104,7 @@ public class InterfaceLoginController implements Initializable {
     }    
 
     @FXML
-    private void ajouteruser(ActionEvent event) throws Exception {
+    public  void ajouteruser(ActionEvent event) throws Exception {
       Pattern pattern = Pattern.compile(regex);
       Pattern pattern2 = Pattern.compile(regex2);
        UsersCRUD cc = new UsersCRUD(); 
@@ -124,6 +126,7 @@ JOptionPane.showMessageDialog(null,"enter a strong password that mus contains up
         } else {
         //JOptionPane.showMessageDialog(null,"Please wait we are creating your account");
         Users u = new Users();
+       
         u.setName(TFname.getText());
         u.setLastname(TFlastname.getText());
         u.setEmail(TFemail.getText());
@@ -194,11 +197,11 @@ JOptionPane.showMessageDialog(null,"enter a strong password that mus contains up
          NewFXMain.setScene("InterfaceAdmin");    
         } else if ((UsersSession.getRole().equals("Camper")) && (true==result)) {
             
-           NewFXMain.setScene("Interface_Camper");
+           NewFXMain.setScene("Interface_User");
         } else if ((UsersSession.getRole().equals("Provider")) && (true==result)) {
-           NewFXMain.setScene("Interface_Provider");        
+           NewFXMain.setScene("Interface_User");        
         } else if ((UsersSession.getRole().equals("Host")) && (true==result)) {
-           NewFXMain.setScene("Interface_Host"); 
+           NewFXMain.setScene("Interface_User"); 
         } 
         
     }

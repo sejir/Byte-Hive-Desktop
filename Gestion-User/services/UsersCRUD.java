@@ -109,6 +109,8 @@ public class UsersCRUD {
   public static boolean Login(String email, String password) throws Exception {
         boolean checkUser = true;
         Users u = new Users();
+
+
         try {
             String requete = "SELECT * FROM users where email=? AND password=? ";
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(requete);

@@ -23,7 +23,7 @@
                </image>
             </ImageView>
             <Button fx:id="changepicbtn" layoutX="83.0" layoutY="72.0" mnemonicParsing="false" onAction="#uploadsiguppic" text="change pic" visible="false" />
-            <Button layoutX="971.0" layoutY="126.0" mnemonicParsing="false" onAction="#retourner" text="Log out" />
+            <Button layoutX="971.0" layoutY="128.0" mnemonicParsing="false" onAction="#retourner" text="Retouner" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="31.0" layoutY="162.0" prefHeight="467.0" prefWidth="417.0">
