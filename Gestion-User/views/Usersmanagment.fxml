@@ -18,19 +18,21 @@
                </font>
             </Label>
          </children></AnchorPane>
-      <Button layoutX="505.0" layoutY="539.0" mnemonicParsing="false" onAction="#resfreshuser" text="Refresh" />
-      <TableView fx:id="tableusers" layoutX="46.0" layoutY="243.0" prefHeight="327.0" prefWidth="437.0">
+      <Button layoutX="395.0" layoutY="235.0" mnemonicParsing="false" onAction="#resfreshuser" text="Refresh" />
+      <TableView fx:id="tableusers" layoutX="28.0" layoutY="275.0" prefHeight="327.0" prefWidth="437.0">
         <columns>
           <TableColumn fx:id="colname" prefWidth="135.0" text="name" />
             <TableColumn fx:id="collastname" prefWidth="175.0" text="lastname" />
             <TableColumn fx:id="colemail" minWidth="0.0" prefWidth="131.0" text="Email" />
         </columns>
       </TableView>
-      <Button layoutX="589.0" layoutY="539.0" mnemonicParsing="false" onAction="#remove" text="Remove" />
-      <Label layoutX="149.0" layoutY="187.0" text="List of Accounts">
+      <Button layoutX="525.0" layoutY="539.0" mnemonicParsing="false" onAction="#remove" prefHeight="31.0" prefWidth="138.0" text="Delete " />
+      <Label layoutX="21.0" layoutY="160.0" text="List of Users Accounts">
          <font>
             <Font name="System Bold" size="27.0" />
          </font>
       </Label>
+      <Button layoutX="831.0" layoutY="539.0" mnemonicParsing="false" onAction="#Activate" prefHeight="31.0" prefWidth="145.0" text="Activate" />
+      <Button layoutX="677.0" layoutY="539.0" mnemonicParsing="false" onAction="#desactivate" prefHeight="31.0" prefWidth="145.0" text="Desactivate" />
    </children>
 </AnchorPane>

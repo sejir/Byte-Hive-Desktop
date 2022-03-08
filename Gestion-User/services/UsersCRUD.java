@@ -112,7 +112,7 @@ public class UsersCRUD {
 
 
         try {
-            String requete = "SELECT * FROM users where email=? AND password=? ";
+            String requete = "SELECT * FROM users where email=? AND password=? AND status =1 ";
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1, email);
             pst.setString(2, password);
@@ -128,7 +128,7 @@ public class UsersCRUD {
                 checkUser = false;
                     JFrame frame = new JFrame("JOptionPane showMessageDialog example");
                     frame.setAlwaysOnTop(true);
-                JOptionPane.showMessageDialog(frame, "EMAIL OR PASSWORD DO NOT MATCH", "Login Invalid", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(frame, "EMAIL OR PASSWORD DO NOT MATCH OR YOUR ACCOUNT HAS BEEN DESACTIVATED!", "Login Invalid", JOptionPane.ERROR_MESSAGE);
                 
             }
         } catch (SQLException ex) {

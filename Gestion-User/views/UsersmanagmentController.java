@@ -15,8 +15,10 @@ import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import javafx.collections.FXCollections;
+import static javafx.collections.FXCollections.observableList;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,6 +50,8 @@ public class UsersmanagmentController implements Initializable {
     private TableColumn<Users, String> colprofilepic;
     private TableColumn<Users, String> colrole;
    private final ObservableList<Users> dataList = FXCollections.observableArrayList();
+
+
 
     
 
@@ -114,5 +118,52 @@ alert.showAndWait();
             System.out.println(ex.getMessage());
         }
     }
-    
+
+    @FXML
+    private void Activate(ActionEvent event) {
+         try {
+            int   myIndex = tableusers.getSelectionModel().getSelectedIndex();
+            int   id = Integer.parseInt(String.valueOf(tableusers.getItems().get(myIndex).getId()));
+            String requete="UPDATE users  SET status = 1 WHERE id =?";
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(requete);
+             pst.setInt(1, id);
+            pst.executeUpdate();
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Users details");
+            
+ 
+alert.setHeaderText("Users details");
+alert.setContentText("This user session is activated ");
+ 
+alert.showAndWait();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+
+    @FXML
+    private void desactivate(ActionEvent event) {
+         try {
+            int   myIndex = tableusers.getSelectionModel().getSelectedIndex();
+            int   id = Integer.parseInt(String.valueOf(tableusers.getItems().get(myIndex).getId()));
+            String requete="UPDATE users  SET status = 0 WHERE id =?";
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(requete);
+             pst.setInt(1, id);
+            pst.executeUpdate();
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Users details");
+            
+ 
+alert.setHeaderText("Users details");
+alert.setContentText("This user is banned!");
+ 
+alert.showAndWait();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+  
+
 }

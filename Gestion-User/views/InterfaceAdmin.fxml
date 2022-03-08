@@ -12,7 +12,8 @@
    <children>
       <AnchorPane layoutY="-6.0" prefHeight="636.0" prefWidth="200.0" style="-fx-background-color: ADC47F;">
          <children>
-            <Button fx:id="userpagebtn" layoutX="42.0" layoutY="135.0" mnemonicParsing="false" onAction="#userpage" prefHeight="31.0" prefWidth="116.0" text="Dashboard" />
+            <Button fx:id="userpagebtn" layoutX="42.0" layoutY="223.0" mnemonicParsing="false" onAction="#userpage" prefHeight="31.0" prefWidth="116.0" text="Dashboard" />
+            <ImageView fitHeight="108.0" fitWidth="153.0" layoutX="24.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="adminpage" layoutX="200.0" prefHeight="106.0" prefWidth="842.0">

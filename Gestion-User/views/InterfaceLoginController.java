@@ -7,7 +7,6 @@ package edu.SprintJava2.views;
 
 import co.yogesh.Captcha;
 import edu.SprintJava2.entities.Users;
-import edu.SprintJava2.services.BCrypt;
 import edu.SprintJava2.services.UsersCRUD;
 import edu.SprintJava2.services.UsersSession;
 import edu.SprintJava2.services.SendMail;
@@ -111,20 +110,34 @@ public class InterfaceLoginController implements Initializable {
         Matcher matcher = pattern.matcher(TFemail.getText());
         Matcher matcher1 = pattern.matcher(TFemail.getText());
         if (cImageUrl.equals("")) {
-           JOptionPane.showMessageDialog(null,"select a picture");
+            JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+            frame.setAlwaysOnTop(true);
+           JOptionPane.showMessageDialog(frame,"select a picture");
         }else if (TFname.getText().length() < 3) {
-           JOptionPane.showMessageDialog(null,"enter a valid name");
+            JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+                 frame.setAlwaysOnTop(true);
+           JOptionPane.showMessageDialog(frame,"enter a valid name");
         } else if (TFlastname.getText().length() < 3) {
-           JOptionPane.showMessageDialog(null,"enter your lastname ");
+            JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+                 frame.setAlwaysOnTop(true);
+           JOptionPane.showMessageDialog(frame,"your lastname must be valid  ");
         } else if (!matcher.matches()) {
-           JOptionPane.showMessageDialog(null,"enter a valid email format");
+            JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+                 frame.setAlwaysOnTop(true);
+           JOptionPane.showMessageDialog(frame,"enter a valid email format");
         } else if (TFpassword.getText().length() < 6 && (!matcher1.matches()))
         {
-JOptionPane.showMessageDialog(null,"enter a strong password that mus contains uppercase char and symbol and numbers");
+            JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+                 frame.setAlwaysOnTop(true);
+JOptionPane.showMessageDialog(frame,"enter a strong password that mus contains uppercase char and symbol and numbers");
         } else if (!cc.validateEmail(TFemail.getText())) {
-            JOptionPane.showMessageDialog(null,"This mail is already used");
+            JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+                 frame.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(frame,"This mail is already used");
         } else {
-        //JOptionPane.showMessageDialog(null,"Please wait we are creating your account");
+            JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+                 frame.setAlwaysOnTop(true);
+        JOptionPane.showMessageDialog(frame,"Please wait we are creating your account");
         Users u = new Users();
        
         u.setName(TFname.getText());
