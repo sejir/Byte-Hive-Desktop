@@ -29,6 +29,7 @@ import javafx.stage.Stage;
 import javafx.util.converter.FloatStringConverter;
 
 import javafx.util.converter.IntegerStringConverter;
+import jxl.write.WriteException;
 import reservation.entities.Reservation;
 
 import reservation.services.ReservationCRUD;
@@ -54,8 +55,6 @@ public class GestionReservationbackController implements Initializable {
     @FXML
     private TableColumn<Reservation, Integer> NumCabCol;
     @FXML
-    private TableColumn<Reservation,Float> PrixCabCol;
-    @FXML
     private TableView<Reservation> TableResBack;
 
     /**
@@ -66,17 +65,26 @@ public class GestionReservationbackController implements Initializable {
         
         //CabineCRUD resc=new CabineCRUD();
      ActionEvent event= new ActionEvent();
-         AfficheResBack(event);
+          AfficheResBack(event);
+                IdREScol.setCellValueFactory(new PropertyValueFactory<>("IdRes"));
+        NomCcol.setCellValueFactory(new PropertyValueFactory<>("NomClient"));
+        prenomCCol.setCellValueFactory(new PropertyValueFactory<>("PrenomC"));
+        IdActCOL.setCellValueFactory(new PropertyValueFactory<>("IdAct"));
+         NbreCOL.setCellValueFactory(new PropertyValueFactory<>("Nbre_Perso"));
+         NumCabCol.setCellValueFactory(new PropertyValueFactory<>("NumCabR"));
+      
        TableResBack.setEditable(true);
        
         TableResBack.getSelectionModel().setCellSelectionEnabled(true);
         
         //IdREScol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        
        
           NomCcol.setCellFactory(TextFieldTableCell.forTableColumn());
           prenomCCol.setCellFactory(TextFieldTableCell.forTableColumn());
            IdActCOL.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         NbreCOL.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        
            NumCabCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         
    
@@ -90,13 +98,7 @@ public class GestionReservationbackController implements Initializable {
         ReservationCRUD reService = new ReservationCRUD();
         List<Reservation> liste = reService.listerResevation();
         ObservableList<Reservation> olist = FXCollections.observableArrayList(liste);  
-        IdREScol.setCellValueFactory(new PropertyValueFactory<>("IdRes"));
-        NomCcol.setCellValueFactory(new PropertyValueFactory<>("NomClient"));
-        prenomCCol.setCellValueFactory(new PropertyValueFactory<>("PrenomC"));
-        IdActCOL.setCellValueFactory(new PropertyValueFactory<>("IdAct"));
-         NbreCOL.setCellValueFactory(new PropertyValueFactory<>("Nbre_Perso"));
-         NumCabCol.setCellValueFactory(new PropertyValueFactory<>("NumC"));
-       
+ 
         
         TableResBack.setItems(olist);
     }
@@ -124,24 +126,21 @@ public class GestionReservationbackController implements Initializable {
     }
 
   
-
-    @FXML
+@FXML
     private void onEditNomc(TableColumn.CellEditEvent<Reservation, String> event) {
            Reservation re=TableResBack.getSelectionModel().getSelectedItem();       
         re.setNomClient(event.getNewValue());
           ReservationCRUD reService = new ReservationCRUD();
         reService.modifierResevation(re);
     }
-
-    @FXML
+@FXML
     private void onEditPrenomC(TableColumn.CellEditEvent<Reservation, String> event) {
            Reservation re=TableResBack.getSelectionModel().getSelectedItem();       
         re.setPrenomC(event.getNewValue());
          ReservationCRUD reService = new ReservationCRUD();
         reService.modifierResevation(re);
     }
-
-    @FXML
+@FXML
     private void onEditidIdAct(TableColumn.CellEditEvent<Reservation, Integer> event) {
            Reservation re=TableResBack.getSelectionModel().getSelectedItem();       
         re.setIdAct(event.getNewValue());
@@ -149,22 +148,31 @@ public class GestionReservationbackController implements Initializable {
         reService.modifierResevation(re);
     }
 
+@FXML
 
-
-    @FXML
     private void onEditnbre(TableColumn.CellEditEvent<Reservation, Integer> event) {
            Reservation re=TableResBack.getSelectionModel().getSelectedItem();       
         re.setNbre_Perso(event.getNewValue());
          ReservationCRUD reService = new ReservationCRUD();
         reService.modifierResevation(re);
     }
-
-    @FXML
+@FXML
     private void onEditNumCab(TableColumn.CellEditEvent<Reservation, Integer> event) {
            Reservation re=TableResBack.getSelectionModel().getSelectedItem();       
         re.setNumCabR(event.getNewValue());
         ReservationCRUD reService = new ReservationCRUD();
         reService.modifierResevation(re);
+    }
+
+   
+
+    @FXML
+    private void exportexcel(ActionEvent event) throws IOException, WriteException {
+        excel test = new excel();
+        test.setOutputFile("src\\les y.xls");
+        test.write();
+        System.out
+                .println("Please check the result file under c:/temp/lars.xls ");
     }
 
 

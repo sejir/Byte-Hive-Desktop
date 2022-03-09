@@ -35,7 +35,7 @@ public class MainClass {
          
         System.out.println(x);
 //pcd.deleteTransport(1);
-       //System.out.println(pcd.listerResevation());
+      System.out.println(pcd.listerResevation());
         //pcd.modifierTransport(T1, 1);
                 //res_cabine D=new res_cabine(52,2,10,"mediocre",200);
       //  resc.ajouterCabine(M);

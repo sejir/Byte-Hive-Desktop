@@ -85,7 +85,7 @@ public class CabineCRUD {
              st.setInt(1,z);
              ResultSet rs = st.executeQuery();
              while (rs.next()){
-             x =  ((Number) rs.getObject(1)).floatValue();
+//             x =  ((Number) rs.getObject(1)).floatValue();
              }
              
          } catch (SQLException ex) {

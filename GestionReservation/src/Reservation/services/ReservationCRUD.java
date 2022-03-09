@@ -77,9 +77,9 @@ public class ReservationCRUD {
             per.setNomClient(rs.getString("NomClient"));
             per.setPrenomC(rs.getString("PrenomC"));
             per.setIdAct(rs.getInt("IdAct"));   
-            per.setNumCabR(rs.getInt("NumC"));
+            
             per.setNbre_Perso(rs.getInt("Nbre_Perso"));
-        
+        per.setNumCabR(rs.getInt("NumC"));
             
             
             mylist.add(per);

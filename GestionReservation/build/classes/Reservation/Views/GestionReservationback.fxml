@@ -11,14 +11,15 @@
         <columns>
           <TableColumn fx:id="IdREScol" prefWidth="75.0" text="IdRes" />
           <TableColumn fx:id="NomCcol" onEditCommit="#onEditNomc" prefWidth="117.5999755859375" text="NomClient" />
-            <TableColumn fx:id="NumCabCol" onEditCommit="#onEditNumCab" prefWidth="84.0" text="numerocab" />
             <TableColumn fx:id="prenomCCol" onEditCommit="#onEditPrenomC" prefWidth="117.60003662109375" text="PrénomClient" />
             <TableColumn fx:id="IdActCOL" onEditCommit="#onEditidIdAct" prefWidth="108.79998779296875" text="IdAct" />
             <TableColumn fx:id="NbreCOL" onEditCommit="#onEditnbre" prefWidth="113.5999755859375" text="Nbre_Perso" />
+            <TableColumn fx:id="NumCabCol" onEditCommit="#onEditNumCab" prefWidth="84.0" text="numerocab" />
         </columns>
       </TableView>
       <Button layoutX="14.0" layoutY="366.0" mnemonicParsing="false" onAction="#AfficheResBack" prefHeight="26.0" prefWidth="71.0" text="Afficher" />
-      <Button layoutX="183.0" layoutY="366.0" mnemonicParsing="false" onAction="#SupprimerResBack" text="Supprimer" />
+      <Button layoutX="149.0" layoutY="366.0" mnemonicParsing="false" onAction="#SupprimerResBack" text="Supprimer" />
       <Button layoutX="379.0" layoutY="366.0" mnemonicParsing="false" onAction="#gotocabines" prefHeight="26.0" prefWidth="182.0" text="Gestion Cabines" />
+      <Button layoutX="252.0" layoutY="366.0" mnemonicParsing="false" onAction="#exportexcel" prefHeight="26.0" prefWidth="98.0" text="Export excel" />
    </children>
 </AnchorPane>

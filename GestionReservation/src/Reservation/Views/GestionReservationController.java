@@ -5,6 +5,7 @@
  */
 package Reservation.Views;
 import Reservation.entities.Cabine;
+import java.io.IOException;
 import reservation.services.ReservationCRUD;
 import reservation.entities.Reservation;
 import java.net.URL;
@@ -26,6 +27,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 
 
@@ -37,6 +42,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import reservation.services.CabineCRUD;
 
 /**
@@ -177,7 +183,19 @@ public class GestionReservationController implements Initializable {
         promlabel.setText(s);
     return x;}
 
+    @FXML
+    private void gotomap(ActionEvent event) throws IOException {
+          FXMLLoader Loder = new FXMLLoader();
+                        Loder.setLocation(getClass().getResource("Mapreservation.fxml"));
+                        Loder.load();
+                        Parent AnchorPane = Loder.getRoot();
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                          Scene scene = new Scene(AnchorPane);
+                         stage.setScene(scene);
+                        stage.showAndWait();}
+    }
+
   
     
-}
+
     

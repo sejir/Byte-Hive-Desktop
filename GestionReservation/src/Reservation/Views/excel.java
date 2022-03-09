@@ -4,8 +4,13 @@
  * and open the template in the editor.
  */
 package Reservation.Views;
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.io.File;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import jxl.CellView;
@@ -21,6 +26,20 @@ import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
+import reservation.entities.Reservation;
+import reservation.utils.MyConnection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import reservation.entities.Reservation;
+import reservation.services.ReservationCRUD;
+import reservation.utils.MyConnection;
+
 
 /**
  *
@@ -79,38 +98,54 @@ public void setOutputFile(String inputFile) {
         cv.setAutosize(true);
 
         // Write a few headers
-        addCaption(sheet, 0, 0, "Header 1");
-        addCaption(sheet, 1, 0, "This is another header");
+        addCaption(sheet, 0, 0, "Id Reservation");
+        addCaption(sheet, 1, 0, "NomClient");
+        addCaption(sheet, 2, 0, "Prenom Client 1");
+        addCaption(sheet, 3, 0, "Id Activité");
+        addCaption(sheet, 4, 0, "Nombre Personnes");
+        addCaption(sheet, 5, 0, "Numero Cabine");
 
 
     }
 
     private void createContent(WritableSheet sheet) throws WriteException,
+          
             RowsExceededException {
-        // Write a few number
-        for (int i = 1; i < 10; i++) {
-            // First column
-            addNumber(sheet, 0, i, i + 10);
-            // Second column
-            addNumber(sheet, 1, i, i * i);
-        }
-        // Lets calculates the sum of it
-        StringBuffer buf = new StringBuffer();
-        buf.append("SUM(A2:A10)");
-        Formula f = new Formula(0, 10, buf.toString());
-        sheet.addCell(f);
-        buf = new StringBuffer();
-        buf.append("SUM(B2:B10)");
-        f = new Formula(1, 10, buf.toString());
-        sheet.addCell(f);
-
-        // now a bit of text
-        for (int i = 12; i < 20; i++) {
-            // First column
-            addLabel(sheet, 0, i, "Boring text " + i);
-            // Second column
-            addLabel(sheet, 1, i, "Another text");
-        }
+        try {
+            
+            int i=2;
+            
+            
+            Reservation per=new Reservation();
+            ReservationCRUD a = new ReservationCRUD();
+            
+            String requete="SELECT *FROM res_act";
+            Statement st=MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs= st.executeQuery(requete);
+            // Write a few number
+           
+                while(rs.next()){
+                    
+                    
+                        
+                        // First column
+                        addNumber(sheet, 0,i,rs.getInt(1) );
+                        // Second column
+                        addLabel(sheet, 1, i, rs.getString("NomClient"));
+                        
+                        addLabel(sheet, 2, i,rs.getString("PrenomC"));
+                        
+                        addNumber(sheet, 3,i,rs.getInt("IdAct"));
+                        
+                        addNumber(sheet, 4, i, rs.getInt("Nbre_Perso"));
+                        
+                        addNumber(sheet, 5, i, rs.getInt("NumC"));
+                        i++;
+                       }}catch (SQLException ex) {
+                        System.out.println(ex.getMessage());
+                    }
+            
+       
     }
 
     private void addCaption(WritableSheet sheet, int column, int row, String s)
@@ -134,13 +169,7 @@ public void setOutputFile(String inputFile) {
         sheet.addCell(label);
     }
 
-    public static void main(String[] args) throws WriteException, IOException {
-        excel test = new excel();
-        test.setOutputFile("C:\\Users\\Sejir");
-        test.write();
-        System.out
-                .println("Please check the result file under c:/temp/lars.xls ");
-    }
+    
 }
     
 
