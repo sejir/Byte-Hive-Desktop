@@ -5,7 +5,7 @@
  */
 package reservation.entities;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -16,9 +16,11 @@ public class Reservation {
     private String NomClient;
     private String PrenomC;
     private int IdAct;
-    private Date dates;
+    
     private int Nbre_Perso;
     private int NumCabR;
+
+    
 
   
     public Reservation() {
@@ -27,19 +29,21 @@ public class Reservation {
  
     @Override
     public String toString() {
-        return "res_Act{" + "IdRes=" + IdRes + ", NomClient=" + NomClient + ", PrenomC="+ PrenomC + ", IdAct=" + IdAct + ", date=" + dates +",Nbre_Perso="+ Nbre_Perso +",NumCabR="+ NumCabR +"}";
+        return "res_Act{" + "IdRes=" + IdRes + ", NomClient=" + NomClient + ", PrenomC="+ PrenomC + ", IdAct=" + IdAct +",Nbre_Perso="+ Nbre_Perso +",NumC="+ NumCabR+"}";
     }
 
-    public Reservation(String NomClient,String PrenomC,int IdAct,Date dates, int Nbre_Perso,int NumCabR) {
+    public Reservation(String NomClient,String PrenomC,int IdAct, int Nbre_Perso,int NumCabR) {
         //this.id = id;
         this.NomClient = NomClient;
         this.PrenomC = PrenomC;
         this.IdAct = IdAct;
-        this.dates = dates;
+        
         this.Nbre_Perso=Nbre_Perso;
          this.NumCabR=NumCabR;
+         
     }
 
+  
     public int getNumCabR() {
         return NumCabR;
     }
@@ -68,9 +72,7 @@ public class Reservation {
         return IdAct;
     }
 
-    public Date getDates() {
-        return dates;
-    }
+   
 
     public String getPrenomC() {
         return PrenomC;
@@ -84,9 +86,8 @@ public class Reservation {
         this.IdAct = IdAct;
     }
 
-    public void setDates(Date dates) {
-        this.dates = dates;
-    }
+    
+    
       public void setNbre_Perso(int Nbre_Perso) {
         this.Nbre_Perso = Nbre_Perso;
     }

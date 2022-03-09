@@ -6,13 +6,17 @@
             <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/services/CabineCRUD.java</file>
             <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/GestionReservation.fxml</file>
             <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/services/ReservationCRUD.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/main/MainClass.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/GestionCabineController.java</file>
+            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/excel.java</file>
             <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/entities/Reservation.java</file>
+            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/ControleSaisie.java</file>
             <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/FirstWindow.java</file>
             <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/GestionReservationController.java</file>
             <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/entities/Cabine.java</file>
             <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/Gestionresmain.java</file>
+            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/GestionReservationbackController.java</file>
+            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/main/MainClass.java</file>
+            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/GestionCabineController.java</file>
+            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/GestionReservationback.fxml</file>
         </group>
     </open-files>
 </project-private>

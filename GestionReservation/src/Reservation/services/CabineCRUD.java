@@ -74,23 +74,28 @@ public class CabineCRUD {
             //Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
         }
  }
- public List recupererCabine(String z)
+ public float recupererPrixCabine(Cabine C,int z)
  {
-     List<Integer> mylist=new ArrayList();
+    float x = 0;
      
 
- String requete="SELECT num FROM res_cabine  WHERE type=?";
-         try {
-            PreparedStatement statement = MyConnection.getInstance().getCnx().prepareStatement(requete);
-            statement.setString(1,z);
-            statement.executeUpdate();
-        } catch (SQLException ex) {
-            //Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-   return mylist;
+ String requete="SELECT prix FROM res_cabine  WHERE num=?";
+           try {
+             PreparedStatement st = MyConnection.getInstance().getCnx().prepareStatement(requete);
+             st.setInt(1,z);
+             ResultSet rs = st.executeQuery();
+             while (rs.next()){
+             x =  ((Number) rs.getObject(1)).floatValue();
+             }
+             
+         } catch (SQLException ex) {
+            // Logger.getLogger(ReservationService.class.getName()).log(Level.SEVERE, null, ex);
+         }
+        
+        return x;
  
- 
- }   
+        } 
+    
            
  
     public void modifierCabine(Cabine C){
@@ -126,19 +131,15 @@ public class CabineCRUD {
             System.out.println(ex.getMessage());            
         }
     }
- public String CodePromo() {
-    int leftLimit = 48; // numeral '0'
-    int rightLimit = 122; // letter 'z'
-    int targetStringLength = 10;
-    Random random = new Random();
+ public int CodePromo() {
+    int min = 10000;
+      int max=99999;
+        
+      //Generate random int value from 50 to 100 
+ 
+      int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
 
-    String generatedString = random.ints(leftLimit, rightLimit + 1)
-      .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-      .limit(targetStringLength)
-      .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-      .toString();
-
-    return generatedString;
+    return random_int;
 }
  public List<Cabine>listerCabineDispo(){
      List<Cabine>mylist=new ArrayList();
@@ -155,7 +156,7 @@ public class CabineCRUD {
             per.setNum(rs.getInt("num"));
            
             per.setType(rs.getString("type"));
-           
+           per.setPrix(rs.getFloat("prix"));
             mylist.add(per);}
             
             

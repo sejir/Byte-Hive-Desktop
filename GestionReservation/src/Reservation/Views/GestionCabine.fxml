@@ -29,6 +29,9 @@
             <Button layoutX="507.0" layoutY="252.0" mnemonicParsing="false" onAction="#SupprimerPar" text="Supprimer" />
             <Button fx:id="afficheC" layoutX="646.0" layoutY="252.0" mnemonicParsing="false" onAction="#AfficherParticipation" text="Afficher" />
             <ComboBox fx:id="TypeCh" layoutX="211.0" layoutY="135.0" prefWidth="150.0" />
+            <Label fx:id="Controle" layoutX="48.0" layoutY="169.0" prefHeight="18.0" prefWidth="206.0" />
+            <Label fx:id="CTRLN" layoutX="14.0" layoutY="229.0" prefHeight="18.0" prefWidth="182.0" />
+            <Label fx:id="CTRLP" layoutX="211.0" layoutY="229.0" prefHeight="18.0" prefWidth="175.0" />
          </children>
       </AnchorPane>
    </children>

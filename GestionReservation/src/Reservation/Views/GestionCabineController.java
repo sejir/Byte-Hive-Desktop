@@ -27,6 +27,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.FloatStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 import reservation.services.CabineCRUD;
+import Reservation.Views.ControleSaisie;
 
 /**
  * FXML Controller class
@@ -63,6 +64,12 @@ public class GestionCabineController implements Initializable {
     @FXML
     private ComboBox<String> TypeCh;
     ObservableList<String> list = FXCollections.observableArrayList("Bungalow", "Cottage", "standard");
+    @FXML
+    private Label Controle;
+    @FXML
+    private Label CTRLN;
+    @FXML
+    private Label CTRLP;
 
    
     
@@ -100,25 +107,45 @@ public class GestionCabineController implements Initializable {
 
     @FXML
     private void AjouterCabine(ActionEvent event) {
+         ControleSaisie u =new ControleSaisie();
+                if (!u.Num(NumeroC.getText()))
+        {
+            Controle.setText("Erreur ! Veuillez insérer un Num valide");
+        }
+//        else 
+//        {
+//             Controle.setText("");
+//        }
+        if (!u.Num(NbrpC.getText()))
+        {
+            CTRLN.setText("Erreur ! Veuillez insérer un Nombre valide");
+        }
+        else 
+        {
+            CTRLN.setText("");
+        }
+    if (!u.Num(PrixC.getText()))
+        {
+            CTRLP.setText("Erreur ! Veuillez insérer un Prix valide");
+        }
+        else 
+        {
+            CTRLP.setText("");
+        }        
         String TypeC =TypeCh.getValue();
             int numeroo = Integer.parseInt(NumeroC.getText());
         int nbrpe = Integer.parseInt(NbrpC.getText());
         String Typec = TypeC;
         float Prix = Float.parseFloat(PrixC.getText());
         Cabine D=new Cabine(52,numeroo,nbrpe,TypeC,Prix,0);
+       
+       
+    
+    
         CabineCRUD resc=new CabineCRUD();
         resc.ajouterCabine(D);
     }
 
-    private void GénérerCodePromo(ActionEvent event) {
-         String x;
-        CabineCRUD reService = new CabineCRUD();
-        x=reService.CodePromo();
-        String s="CodePromo:"+x;
-            
-        
-        promo.setText(s);
-    }
     @FXML
     private void onEditnum(TableColumn.CellEditEvent<Cabine,  Integer> event) {
          Cabine re=tablec.getSelectionModel().getSelectedItem();       
@@ -126,21 +153,22 @@ public class GestionCabineController implements Initializable {
         CabineCRUD reService = new CabineCRUD();
         reService.modifierCabine(re);
     }
-    @FXML
+     @FXML
     private void onEditNbrp(TableColumn.CellEditEvent<Cabine,  Integer> event) {
         Cabine re=tablec.getSelectionModel().getSelectedItem();       
         re.setNb_personnes(event.getNewValue());
         CabineCRUD reService = new CabineCRUD();
         reService.modifierCabine(re);
     }
-    @FXML
+     @FXML
     private void onEditPrix(TableColumn.CellEditEvent<Cabine,  Float> event) {
         Cabine re=tablec.getSelectionModel().getSelectedItem();       
         re.setPrix(event.getNewValue());
         CabineCRUD reService = new CabineCRUD();
         reService.modifierCabine(re);
     }
-    @FXML
+     @FXML
+     
     private void onEditType(TableColumn.CellEditEvent<Cabine, String> event) {
           Cabine re=tablec.getSelectionModel().getSelectedItem();       
         re.setType(event.getNewValue());
@@ -165,8 +193,6 @@ public class GestionCabineController implements Initializable {
         
         tablec.setItems(olist);
     }
-
-   
 
   
 

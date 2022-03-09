@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Reservation.Views.GestionReservationbackController">
-    
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Reservation.Views.GestionReservationbackController">
+   <children>
+      <TableView fx:id="TableResBack" layoutX="-15.0" prefHeight="362.0" prefWidth="617.0">
+        <columns>
+          <TableColumn fx:id="IdREScol" prefWidth="75.0" text="IdRes" />
+          <TableColumn fx:id="NomCcol" onEditCommit="#onEditNomc" prefWidth="117.5999755859375" text="NomClient" />
+            <TableColumn fx:id="NumCabCol" onEditCommit="#onEditNumCab" prefWidth="84.0" text="numerocab" />
+            <TableColumn fx:id="prenomCCol" onEditCommit="#onEditPrenomC" prefWidth="117.60003662109375" text="PrénomClient" />
+            <TableColumn fx:id="IdActCOL" onEditCommit="#onEditidIdAct" prefWidth="108.79998779296875" text="IdAct" />
+            <TableColumn fx:id="NbreCOL" onEditCommit="#onEditnbre" prefWidth="113.5999755859375" text="Nbre_Perso" />
+        </columns>
+      </TableView>
+      <Button layoutX="14.0" layoutY="366.0" mnemonicParsing="false" onAction="#AfficheResBack" prefHeight="26.0" prefWidth="71.0" text="Afficher" />
+      <Button layoutX="183.0" layoutY="366.0" mnemonicParsing="false" onAction="#SupprimerResBack" text="Supprimer" />
+      <Button layoutX="379.0" layoutY="366.0" mnemonicParsing="false" onAction="#gotocabines" prefHeight="26.0" prefWidth="182.0" text="Gestion Cabines" />
+   </children>
 </AnchorPane>

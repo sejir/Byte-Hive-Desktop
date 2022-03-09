@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import reservation.entities.Reservation;
 import reservation.utils.MyConnection;
-import java.text.SimpleDateFormat;
-import java.sql.Date;
+
 
 /**
  *
@@ -23,17 +22,18 @@ import java.sql.Date;
 public class ReservationCRUD {
       public void ajouterResevation(Reservation T){
         try {
-            String requete="INSERT INTO res_act(NomClient,PrenomC,IdAct ,date,Nbre_Perso,NumCab)Values(?,?,?,?,?,?)";
+            String requete="INSERT INTO res_act(NomClient,PrenomC,IdAct,Nbre_Perso,NumC)Values(?,?,?,?,?)";
             PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
         pst.setString(1, T.getNomClient());
         pst.setString(2, T.getPrenomC());
         
         pst.setInt(3, T.getIdAct());
-                         //   java.sql.Date d_debut = new java.sql.Date(T.getDates().getTime());
+                     
 
-        //pst.setDate(4, T.d_debut);
-        pst.setInt(5, T.getNbre_Perso());
-         pst.setInt(6, T.getNumCabR());
+        
+        pst.setInt(4, T.getNbre_Perso());
+         pst.setInt(5, T.getNumCabR());
+
         pst.executeUpdate();
             System.out.println("Reservation ajoutée");
         
@@ -43,17 +43,18 @@ public class ReservationCRUD {
     }
        public void Réserveractivité(Reservation T){
         try {
-            String requete="INSERT INTO res_act(NomClient,PrenomC,IdAct ,date,Nbre_Perso,NumCab)Values(?,?,?,?,?,?)";
+            String requete="INSERT INTO res_act(NomClient,PrenomC,IdAct,Nbre_Perso,NumC)Values(?,?,?,?,?)";
             PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
         pst.setString(1, T.getNomClient());
         pst.setString(2, T.getPrenomC());
-                    //java.sql.Date d_debut = new java.sql.Date(T.getDates().getTime());
+               
 
         pst.setInt(3, T.getIdAct());
-        pst.setDate(4,T.getDates());
-        pst.setInt(5, T.getNbre_Perso());
-         pst.setInt(6, T.getNumCabR());
-        //NumCabR
+
+        pst.setInt(4, T.getNbre_Perso());
+         pst.setInt(5,T.getNumCabR());
+
+       
         pst.executeUpdate();
             System.out.println("Reservation ajoutée");
         
@@ -72,13 +73,14 @@ public class ReservationCRUD {
             while(rs.next()){
             
             Reservation per=new Reservation();
-            per.setIdRes(rs.getInt("IdRes"));
+            per.setIdRes(rs.getInt(1));
             per.setNomClient(rs.getString("NomClient"));
-            per.setNomClient(rs.getString("PrenomC"));
-            per.setIdAct(rs.getInt("IdAct"));
-            per.setDates(rs.getDate("date"));
-            per.setIdAct(rs.getInt("Nbre_Perso"));
-            per.setIdAct(rs.getInt("NumCabR"));
+            per.setPrenomC(rs.getString("PrenomC"));
+            per.setIdAct(rs.getInt("IdAct"));   
+            per.setNumCabR(rs.getInt("NumC"));
+            per.setNbre_Perso(rs.getInt("Nbre_Perso"));
+        
+            
             
             mylist.add(per);
             }
@@ -88,35 +90,38 @@ public class ReservationCRUD {
             System.out.println(ex.getMessage());
         }
    return mylist;}
-     public void deleteResevation(int z) {
+     public void deleteResevation(Reservation z) {
        try
-       {
-           String requete="DELETE FROM res_act WHERE IdRes =" +z ;
+       {            Reservation per=new Reservation();
+
+           String requete="DELETE FROM res_act WHERE IdRes =?";
           PreparedStatement pste=MyConnection.getInstance().getCnx().prepareStatement(requete);
-           if (pste.execute())
-          { System.out.println("transport supprimée");}
-           
+            pste.setInt(1,per.getIdRes());
+            pste.executeUpdate();
        }catch(SQLException ex)
        {
           System.out.println(ex.getMessage());
        }
+       
  }
  
            
  
-    public void modifierResevation(Reservation C, int z){
+    public void modifierResevation(Reservation C){
         try {
-            String requete =  "UPDATE res_act SET NomClient = ?,PrenomC = ?, nb_personnes = ?, date = ?,Nbre_Perso= ?,NumCabR=? WHERE IdRes="+z;
+            String requete =  "UPDATE res_act SET NomClient = ?,PrenomC = ?, IdAct = ?,Nbre_Perso= ?,NumC=? WHERE IdRes=?";
            
             PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1, C.getNomClient());
             pst.setString(2, C.getPrenomC());
             pst.setInt(3, C.getIdAct());
-                            //  java.sql.Date = new java.sql.Date(C.getDates().getTime());
-//pst.setDate(4,C.);
+ 
             
-            pst.setInt(5, C.getNbre_Perso());
-            pst.setInt(6, C.getNumCabR());
+            pst.setInt(4, C.getNbre_Perso());
+            pst.setInt(5, C.getNumCabR());
+       
+            pst.setInt(6, C.getIdRes());
+            
 
             pst.executeUpdate();
             System.out.println("Réservation modifiée!");                        

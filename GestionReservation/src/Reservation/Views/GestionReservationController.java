@@ -8,7 +8,11 @@ import Reservation.entities.Cabine;
 import reservation.services.ReservationCRUD;
 import reservation.entities.Reservation;
 import java.net.URL;
-import java.sql.Date;
+import java.util.Date;
+//import com.jfoenix.controls.JFXComboBox;
+//import com.jfoenix.controls.JFXDatePicker;
+//import com.jfoenix.controls.JFXTextField;
+//import com.jfoenix.controls.JFXTimePicker;
 import java.text.ParseException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -45,8 +49,6 @@ public class GestionReservationController implements Initializable {
     @FXML
     private TextField NomR;
     @FXML
-    private DatePicker DateR;
-    @FXML
     private Button Réserver;
     @FXML
     private TextField PrénomR;
@@ -58,7 +60,6 @@ public class GestionReservationController implements Initializable {
        // ObservableList<String> liste = FXCollections.observableArrayList("Bungalow", "Cottage", "standard");
         
 
-    @FXML
     private Label promlabel;
     @FXML
     private TextField numCchoisi;
@@ -70,6 +71,16 @@ public class GestionReservationController implements Initializable {
         private TableColumn<Cabine,String> TypeCabP;
     @FXML
     private Button AffC;
+    @FXML
+    private TableColumn<Cabine, Float> PrixCab;
+    @FXML
+    private Label ctrlnom;
+    @FXML
+    private Label ctrlprenom;
+    @FXML
+    private Label ctrlnum;
+    @FXML
+    private Label ctrlnbre;
     /**
      * Initializes the controller class.
      */
@@ -82,42 +93,72 @@ public class GestionReservationController implements Initializable {
         NumCabP.setCellValueFactory(new PropertyValueFactory<>("num"));
         
          TypeCabP.setCellValueFactory(new PropertyValueFactory<>("type"));
+         PrixCab.setCellValueFactory(new PropertyValueFactory<>("prix"));
          afficherCabs(event);
          
       //reService.listerCabine();
+      float prix;
     }    
 
     @FXML
-    private void Réservationa(ActionEvent event) {
+    public void Réservationa(ActionEvent event) {
+                 ControleSaisie u =new ControleSaisie();
+
+          if (!u.Num(NomR.getText()))
+        {
+            ctrlnom.setText("Erreur ! Veuillez insérer un Nom valide");
+        }
+        else 
+        {
+             ctrlnom.setText("");
+        }
+        if (!u.Num(PrénomR.getText()))
+        {
+            ctrlprenom.setText("Erreur ! Veuillez insérer un Prénom valide");
+        }
+        else 
+        {
+            ctrlprenom.setText("");
+        }
+    if (!u.Num(Nbre_PersoR.getText()))
+        {
+            ctrlnbre.setText("Erreur ! Veuillez insérer un nbre valide");
+        }
+        else 
+        {
+            ctrlnbre.setText("");
+        }       
+      if (!u.Num(numCchoisi.getText()))
+        {
+            ctrlnum.setText("Erreur ! Veuillez insérer un num valide");
+        }
+        else 
+        {
+            ctrlnum.setText("");
+        }      
            String NomClient = NomR.getText();
            String PrenomClient = PrénomR.getText();
         int nbrpe = Integer.parseInt(Nbre_PersoR.getText());
-        //String dateRes = DateR.getValue().toString();
-              java.sql.Date dateRes = java.sql.Date.valueOf(DateR.getValue());
  int numeroo = Integer.parseInt(numCchoisi.getText());
+ //int x = Integer.parseInt(prixxx.getText());
             
         
         
-        
-        Reservation D=new Reservation(NomClient,PrenomClient,0,dateRes,nbrpe,numeroo);
+       
+          Cabine ab=new Cabine();
+        CabineCRUD c=new CabineCRUD();
+       //float x=c.recupererPrixCabine(ab,numeroo);
+    
+        Reservation D=new Reservation(NomClient,PrenomClient,0,nbrpe,numeroo);
         ReservationCRUD resc =new ReservationCRUD();
         resc.Réserveractivité(D);
-        Cabine ab=new Cabine();
-        CabineCRUD c=new CabineCRUD();
+       
         c.Dispo(ab,numeroo);
     }
 
 
-    @FXML
-    private void promx(ActionEvent event) {
-    }
 
-    private void settt(ActionEvent event) {
-        CabineCRUD resc =new CabineCRUD();
-         String z =Typecab.getValue();
-        ObservableList<String> liste = FXCollections.observableArrayList(resc.recupererCabine(z));
-         listecab.setItems(liste);
-    }
+    
 
     @FXML
     private void afficherCabs(ActionEvent event) {
@@ -127,6 +168,16 @@ public class GestionReservationController implements Initializable {
         
         CabProp.setItems(olist);
     }
+
+    public int genererCodeP(ActionEvent event) {
+          int x;
+        CabineCRUD reService = new CabineCRUD();
+        x=reService.CodePromo();
+        String s="CodePromo:"+x;
+        promlabel.setText(s);
+    return x;}
+
+  
     
 }
     
