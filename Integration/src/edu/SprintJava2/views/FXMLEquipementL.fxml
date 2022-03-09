@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="284.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.SprintJava2.views.FXMLEquipementLController">
+   <children>
+      <ImageView fx:id="IVEquipL" fitHeight="153.0" fitWidth="284.0" pickOnBounds="true" preserveRatio="true" />
+      <Label prefHeight="21.0" prefWidth="144.0" text="Nom:" textFill="#e9ffb6">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font></Label>
+      <Label fx:id="labelNomEquipL" text="Label" textFill="#0f7533" />
+      <Label prefHeight="21.0" prefWidth="153.0" text="Description:" textFill="#e9ffb6" />
+      <Label fx:id="LabelDescriptionEquipL" text="Label" textFill="#0f7533" />
+      <Label prefHeight="21.0" prefWidth="55.0" text="Prix :" textFill="#e9ffb6" />
+      <Label fx:id="labelPrixEquipL" text="Label" textFill="#0f7533" />
+      <Rating fx:id="ratingEquipL" disable="true" />
+      <Label fx:id="labelIdEquipL" text="Label" visible="false" />
+      <Label fx:id="labelIdFEquipL" text="Label" visible="false" />
+   </children>
+</VBox>

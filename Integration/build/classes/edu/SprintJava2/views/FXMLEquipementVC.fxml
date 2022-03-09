@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="694.0" prefWidth="955.0" style="-fx-background-color: adc47f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.SprintJava2.views.FXMLEquipementVCController">
+   <children>
+      <BorderPane layoutY="6.0" prefHeight="694.0" prefWidth="955.0" style="-fx-background-color: adc47f;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox prefHeight="81.0" prefWidth="955.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label contentDisplay="CENTER" prefHeight="43.0" prefWidth="209.0" text="Nature Cruise" textAlignment="CENTER" textFill="#e9ffb6">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="20.0" top="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Times New Roman" size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <left>
+            <VBox prefHeight="631.0" prefWidth="181.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="TFNomEquipV" alignment="CENTER" prefHeight="37.0" prefWidth="159.0" promptText="Nom Equipement" style="-fx-background-color: d4e4b2;">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="TFPrixEquipV" prefHeight="37.0" prefWidth="159.0" promptText="Prix Equipement" style="-fx-background-color: d4e4b2;">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextArea fx:id="TADescriptionEquipV" prefHeight="112.0" prefWidth="159.0" promptText="Description Equipement" style="-fx-background-color: d4e4b2;">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TextArea>
+                  <HBox prefHeight="32.0" prefWidth="170.0">
+                     <children>
+                        <TextField fx:id="TFImageEquipV" disable="true" prefHeight="31.0" prefWidth="150.0" promptText=" Image Equipement" style="-fx-background-color: d4e4b2;">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#clickImage" style="-fx-background-color: #7da12b;" textFill="#7da12b" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField fx:id="TFQuantiteEquipV" promptText="Quantité Equipement" style="-fx-background-color: d4e4b2;">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="TFIdFournisseur" promptText="Id Fournisseur" style="-fx-background-color: d4e4b2;">
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextField fx:id="TFIdEquipV" prefHeight="31.0" prefWidth="82.0" visible="false" />
+                  <Button fx:id="btnAjouterEquipV" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajouterEquipV" prefHeight="22.0" prefWidth="119.0" style="-fx-background-color: #7da12b;" text="Ajouter" textFill="#e9ffb6">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Times New Roman" size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnModifierEquipV" mnemonicParsing="false" onAction="#modifierEquipV" prefHeight="35.0" prefWidth="136.0" style="-fx-background-color: #7da12b;" text="Mofifier" textFill="#e9ffb6">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnSupprimerequipV" mnemonicParsing="false" onAction="#supprimerEquipV" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: #7da12b;" text="Supprimer" textFill="#e9ffb6">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Label text="Chiffre D'affaires" textFill="#e9ffb6" />
+                  <Label fx:id="s" />
+               </children>
+            </VBox>
+         </left>
+         <right>
+            <LineChart fx:id="lineChartEquiV" prefHeight="411.0" prefWidth="276.0" BorderPane.alignment="CENTER">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis prefWidth="27.0" side="LEFT" />
+              </yAxis>
+            </LineChart>
+         </right>
+         <center>
+            <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="336.0" prefWidth="293.0" style="-fx-background-color: adc47f;" BorderPane.alignment="CENTER">
+               <content>
+                  <GridPane fx:id="gridEquipV" alignment="CENTER" onMouseClicked="#selectionner" prefHeight="533.0" prefWidth="502.0" style="-fx-background-color: adc47f;">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </center>
+         <bottom>
+            <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="825.0" />
+                  <Button fx:id="btnQuitter" mnemonicParsing="false" onAction="#Quitter" prefHeight="43.0" prefWidth="125.0" style="-fx-background-color: ff9743;" text="Quiter" textFill="#ffd8b9">
+                     <HBox.margin>
+                        <Insets right="20.0" top="20.0" />
+                     </HBox.margin></Button>
+               </children>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

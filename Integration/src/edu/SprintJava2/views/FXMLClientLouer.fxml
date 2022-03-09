@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="329.0" prefWidth="276.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.SprintJava2.views.FXMLClientLouerController">
+   <children>
+      <ImageView fx:id="IVEquip" fitHeight="180.0" fitWidth="278.0" pickOnBounds="true" preserveRatio="true" />
+      <Label prefHeight="31.0" prefWidth="117.0" text="Nom du Client:" textFill="#e9ffb6">
+         <font>
+            <Font name="Times New Roman" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelNomClient" prefHeight="27.0" prefWidth="83.0" textFill="#0f7533" />
+      <Label prefHeight="21.0" prefWidth="158.0" text="Nom de L'equipement" textFill="#e9ffb6" />
+      <Label fx:id="labelNomEquip" textFill="#0f7533" />
+      <Label text="Date de Remise" textFill="#e9ffb6" />
+      <Label fx:id="labelDateRemise" textFill="#0f7533" />
+   </children>
+</VBox>

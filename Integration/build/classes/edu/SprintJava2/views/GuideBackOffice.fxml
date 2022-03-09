@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="630.0" prefWidth="1043.0" style="-fx-background-color: ADC47F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.SprintJava2.views.GuideBackOfficeController">
+   <children>
+      <Label layoutX="364.0" layoutY="192.0" text="Nom" />
+      <Label layoutX="345.0" layoutY="252.0" text="Prénom" />
+      <TextField fx:id="gfnom" layoutX="428.0" layoutY="187.0" />
+      <TextField fx:id="gfprenom" layoutX="428.0" layoutY="247.0" />
+      <Button fx:id="BtnVa" layoutX="430.0" layoutY="441.0" mnemonicParsing="false" onAction="#ajouterguide" prefHeight="31.0" prefWidth="166.0" text="Validate" />
+      <Label layoutX="354.0" layoutY="320.0" text="Lieux" />
+      <Label layoutX="331.0" layoutY="380.0" text="Disponibilté" />
+      <TextField fx:id="gflieux" layoutX="428.0" layoutY="315.0" />
+      <DatePicker fx:id="gfdispo" layoutX="428.0" layoutY="375.0" prefHeight="31.0" prefWidth="187.0" />
+      <Label layoutX="379.0" layoutY="75.0" prefHeight="58.0" prefWidth="295.0" text="FORUM pour Guide" textAlignment="CENTER" textFill="#0d0d0d">
+         <font>
+            <Font name="Freestyle Script" size="41.0" />
+         </font>
+      </Label>
+      <Button layoutX="907.0" layoutY="25.0" mnemonicParsing="false" onAction="#retourner" prefHeight="31.0" prefWidth="115.0" text="Back" />
+   </children>
+</AnchorPane>

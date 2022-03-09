@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="630.0" prefWidth="1043.0" style="-fx-background-color: ADC47F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.SprintJava2.views.GestionemplacementController">
+   <children>
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="74.0" prefWidth="134.0" spacing="15.0">
+         <children>
+            <Label text="nom d'emplacement">
+               <font>
+                  <Font name="Baloo" size="14.0" />
+               </font>
+            </Label>
+            <Label text="description emplacement">
+               <font>
+                  <Font name="Baloo" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="153.0" layoutY="14.0" prefHeight="86.0" prefWidth="134.0" spacing="15.0">
+         <children>
+            <TextField fx:id="tfnemplacement" promptText="nom specifique " />
+            <TextField fx:id="tfdemplacement" prefHeight="55.0" prefWidth="134.0" promptText="description de lespace" />
+         </children>
+      </VBox>
+      <TableView fx:id="tvemplacement" layoutX="351.0" layoutY="152.0" onMouseClicked="#selectrow" prefHeight="357.0" prefWidth="300.0">
+        <columns>
+          <TableColumn fx:id="tvlemplacement" prefWidth="148.0" text="emplacement" />
+          <TableColumn fx:id="tvldescription" prefWidth="149.0" text="descirption" />
+        </columns>
+      </TableView>
+      <Label layoutX="496.0" layoutY="51.0" prefHeight="40.0" prefWidth="338.0" text="Locations Managment">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
+      <Button layoutX="101.0" layoutY="253.0" mnemonicParsing="false" onAction="#modifieremplacement" text="modifier" />
+      <Button layoutX="14.0" layoutY="253.0" mnemonicParsing="false" onAction="#ajouteremplacement" text="ajouter" />
+      <Button layoutX="199.0" layoutY="253.0" mnemonicParsing="false" onAction="#supprimeremplacement" text="supprimer" />
+      <TableView fx:id="tvcount" layoutX="684.0" layoutY="152.0" prefHeight="357.0" prefWidth="300.0">
+        <columns>
+          <TableColumn fx:id="empcount" prefWidth="153.0" text="emplacement" />
+          <TableColumn fx:id="count" prefWidth="146.0" text="count" />
+        </columns>
+      </TableView>
+      <Button layoutX="943.0" layoutY="20.0" mnemonicParsing="false" onAction="#retourner" prefHeight="31.0" prefWidth="76.0" text="Back" />
+   </children>
+</AnchorPane>

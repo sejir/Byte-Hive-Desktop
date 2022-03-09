@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="455.0" prefWidth="774.0" style="-fx-background-color: #cfb337;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.SprintJava2.views.GestionCabineController">
+   <children>
+      <TextField fx:id="NumeroC" layoutX="39.0" layoutY="135.0" promptText="Numero" style="-fx-background-color: #c6dcc5;" />
+      <TextField fx:id="NbrpC" layoutX="37.0" layoutY="200.0" promptText="Nombre de Personnes" style="-fx-background-color: #c6dcc5;" />
+      <TextField fx:id="PrixC" layoutX="212.0" layoutY="200.0" promptText="Prix" style="-fx-background-color: #c6dcc5;" />
+      <Button fx:id="AjoutC" layoutX="62.0" layoutY="251.0" mnemonicParsing="false" onAction="#AjouterCabine" prefHeight="26.0" prefWidth="127.0" style="-fx-background-color: #589628;" text="Ajouter" textFill="#efffee" />
+      <Label layoutX="48.0" layoutY="55.0" prefHeight="18.0" prefWidth="200.0" text="Gestion des Cabines">
+         <font>
+            <Font name="Candara Bold" size="19.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tablec" layoutX="387.0" prefHeight="248.0" prefWidth="379.0" style="-fx-background-color: #589628;">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="numColumn" onEditCommit="#onEditnum" prefWidth="75.0" text="num" />
+            <TableColumn fx:id="nbrpColumn" onEditCommit="#onEditNbrp" prefWidth="75.0" text="nbrp" />
+            <TableColumn fx:id="prixColumn" onEditCommit="#onEditPrix" prefWidth="75.0" text="prix" />
+            <TableColumn fx:id="typeColumn" onEditCommit="#onEditType" prefWidth="75.0" text="type" />
+        </columns>
+      </TableView>
+      <Button layoutX="507.0" layoutY="252.0" mnemonicParsing="false" onAction="#SupprimerPar" style="-fx-background-color: #589628;" text="Supprimer" textFill="#d2deaf" />
+      <Button fx:id="afficheC" layoutX="646.0" layoutY="252.0" mnemonicParsing="false" onAction="#AfficherParticipation" style="-fx-background-color: #589628;" text="Afficher" textFill="#f2fff3" />
+      <ComboBox fx:id="TypeCh" layoutX="211.0" layoutY="135.0" prefWidth="150.0" style="-fx-background-color: #c6dcc5;" />
+      <Label fx:id="Controle" layoutX="48.0" layoutY="169.0" prefHeight="18.0" prefWidth="206.0" />
+      <Label fx:id="CTRLN" layoutX="14.0" layoutY="229.0" prefHeight="18.0" prefWidth="182.0" />
+      <Label fx:id="CTRLP" layoutX="211.0" layoutY="229.0" prefHeight="18.0" prefWidth="175.0" />
+      <Label fx:id="prixlabel" layoutX="237.0" layoutY="320.0" prefHeight="18.0" prefWidth="98.0" text="Total des Prix:" />
+      <Button layoutX="150.0" layoutY="317.0" mnemonicParsing="false" onAction="#prixtot" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #589628;" text="Prix Total" textOverrun="CENTER_ELLIPSIS">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.5171344876289368" green="0.7789473533630371" blue="0.3029239773750305" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.7764706015586853" green="0.8627451062202454" blue="0.772549033164978" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font name="Candara" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

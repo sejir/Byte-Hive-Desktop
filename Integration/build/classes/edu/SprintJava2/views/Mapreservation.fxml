@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: 0000;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.SprintJava2.views.MapreservationController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutY="-1.0" prefHeight="579.0" prefWidth="898.0" style="-fx-background-color: #a17416;" styleClass="mainFxmlClass">
+        
+         <children>
+            <TextField fx:id="idRole" disable="true" layoutX="13.0" layoutY="14.0" opacity="0.0" promptText="Nom" text="0" />
+            <Pane layoutX="279.0" layoutY="158.0" prefHeight="385.0" prefWidth="567.0" style="-fx-background-color: #7ea115;" styleClass="mainFxmlClass">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <children>
+                  <Button fx:id="idValider" layoutX="206.0" layoutY="286.0" mnemonicParsing="false" onAction="#Valider" prefHeight="31.0" prefWidth="148.0" style="-fx-background-color: #c1a504;" text="Add">
+                     <font>
+                        <Font name="Calibri Light" size="24.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="73.0" layoutY="42.0" prefHeight="31.0" prefWidth="105.0" text="Address" textFill="#613c19">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Label>
+                  <TextField fx:id="idAdresse" layoutX="279.0" layoutY="52.0" promptText="camp" />
+                  <WebView fx:id="idWebView" layoutX="43.0" layoutY="80.0" prefHeight="200.0" prefWidth="493.0" />
+               </children>
+            </Pane>
+            <TextField fx:id="idRole1" disable="true" layoutX="14.0" layoutY="23.0" opacity="0.0" promptText="Role" text="0" />
+            <AnchorPane prefHeight="579.0" prefWidth="230.0" style="-fx-background-color: #7ea115;">
+               <children>
+                  <Hyperlink fx:id="back" alignment="TOP_CENTER" layoutX="50.0" layoutY="476.0" onAction="#aboutUsRedirect" prefHeight="51.0" prefWidth="145.0" text="Back" textAlignment="JUSTIFY" textFill="#513838" textOverrun="CLIP">
+                     <font>
+                        <Font name="Candara Bold" size="27.0" />
+                     </font>
+                  </Hyperlink>
+                  <TextField fx:id="idRole" layoutX="29.0" layoutY="26.0" opacity="0.0" promptText="0" text="1" />
+               </children>
+            </AnchorPane>
+            <Label alignment="CENTER" cache="true" contentDisplay="CENTER" layoutX="236.0" layoutY="79.0" prefHeight="57.0" prefWidth="311.0" style="-fx-background-color: #7ea115;" text="Saisir l'emplacement de l'act" textAlignment="CENTER" textFill="#f2d28d">
+               <font>
+                  <Font name="Berlin Sans FB" size="24.0" />
+               </font>
+               <effect>
+                  <Blend opacity="0.21">
+                     <topInput>
+                        <BoxBlur />
+                     </topInput>
+                  </Blend>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="NE_RESIZE" />
+               </cursor>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
