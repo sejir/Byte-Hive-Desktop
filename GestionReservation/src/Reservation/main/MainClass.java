@@ -26,7 +26,7 @@ public class MainClass {
         
         //res_transport T1=new res_transport("Mohsen", 10, new Date (2020,10,10));
         ReservationCRUD pcd = new ReservationCRUD();
-       
+
         CabineCRUD a=new CabineCRUD();
         Cabine ab=new Cabine();
         CabineCRUD c=new CabineCRUD();
@@ -36,12 +36,7 @@ public class MainClass {
         System.out.println(x);
 //pcd.deleteTransport(1);
       System.out.println(pcd.listerResevation());
-        //pcd.modifierTransport(T1, 1);
-                //res_cabine D=new res_cabine(52,2,10,"mediocre",200);
-      //  resc.ajouterCabine(M);
-        //  System.out.println(resc.listerCabine());
-       //   resc.deleteCabine(1);
-        //  resc.modifierCabine(D, 2);
+      
     }
     
 }

@@ -70,6 +70,8 @@ public class GestionCabineController implements Initializable {
     private Label CTRLN;
     @FXML
     private Label CTRLP;
+    @FXML
+    private Label prixlabel;
 
    
     
@@ -111,11 +113,8 @@ public class GestionCabineController implements Initializable {
                 if (!u.Num(NumeroC.getText()))
         {
             Controle.setText("Erreur ! Veuillez insérer un Num valide");
-        }
-//        else 
-//        {
-//             Controle.setText("");
-//        }
+        }        else    {             Controle.setText("");
+       }
         if (!u.Num(NbrpC.getText()))
         {
             CTRLN.setText("Erreur ! Veuillez insérer un Nombre valide");
@@ -145,30 +144,28 @@ public class GestionCabineController implements Initializable {
         CabineCRUD resc=new CabineCRUD();
         resc.ajouterCabine(D);
     }
-
-    @FXML
+@FXML
     private void onEditnum(TableColumn.CellEditEvent<Cabine,  Integer> event) {
          Cabine re=tablec.getSelectionModel().getSelectedItem();       
         re.setNum(event.getNewValue());
         CabineCRUD reService = new CabineCRUD();
         reService.modifierCabine(re);
     }
-     @FXML
+    @FXML
     private void onEditNbrp(TableColumn.CellEditEvent<Cabine,  Integer> event) {
         Cabine re=tablec.getSelectionModel().getSelectedItem();       
         re.setNb_personnes(event.getNewValue());
         CabineCRUD reService = new CabineCRUD();
         reService.modifierCabine(re);
     }
-     @FXML
+    @FXML
     private void onEditPrix(TableColumn.CellEditEvent<Cabine,  Float> event) {
         Cabine re=tablec.getSelectionModel().getSelectedItem();       
         re.setPrix(event.getNewValue());
         CabineCRUD reService = new CabineCRUD();
         reService.modifierCabine(re);
     }
-     @FXML
-     
+    @FXML
     private void onEditType(TableColumn.CellEditEvent<Cabine, String> event) {
           Cabine re=tablec.getSelectionModel().getSelectedItem();       
         re.setType(event.getNewValue());
@@ -192,6 +189,15 @@ public class GestionCabineController implements Initializable {
         ObservableList<Cabine> olist = FXCollections.observableArrayList(liste);
         
         tablec.setItems(olist);
+    }
+
+   
+    @FXML
+    private void prixtot(ActionEvent event) {
+        CabineCRUD reService = new CabineCRUD();
+     float   x=reService.Prixtotal();
+     String s=String.valueOf(x);  
+        prixlabel.setText(s);
     }
 
   

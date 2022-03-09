@@ -126,9 +126,15 @@ public class ControleSaisie {
 		if (controler.matches()) {
 			return true;
 		}
-		return false;
+		return false;}
+                    public boolean flaotd(String num) {
+		String masque = "[0-9]"+"."+"[0-9]";
+		Pattern pattern = Pattern.compile(masque);
+		Matcher controler = pattern.matcher(num);
+		
+		return controler.matches();
     
-}
+
 
    
-}
+}}

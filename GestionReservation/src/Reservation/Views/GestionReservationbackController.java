@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -23,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
@@ -56,6 +59,8 @@ public class GestionReservationbackController implements Initializable {
     private TableColumn<Reservation, Integer> NumCabCol;
     @FXML
     private TableView<Reservation> TableResBack;
+    @FXML
+    private TextField recherche;
 
     /**
      * Initializes the controller class.
@@ -125,38 +130,35 @@ public class GestionReservationbackController implements Initializable {
                     
     }
 
-  
-@FXML
+  @FXML
     private void onEditNomc(TableColumn.CellEditEvent<Reservation, String> event) {
            Reservation re=TableResBack.getSelectionModel().getSelectedItem();       
         re.setNomClient(event.getNewValue());
           ReservationCRUD reService = new ReservationCRUD();
         reService.modifierResevation(re);
     }
-@FXML
+    @FXML
     private void onEditPrenomC(TableColumn.CellEditEvent<Reservation, String> event) {
            Reservation re=TableResBack.getSelectionModel().getSelectedItem();       
         re.setPrenomC(event.getNewValue());
          ReservationCRUD reService = new ReservationCRUD();
         reService.modifierResevation(re);
     }
-@FXML
+    @FXML
     private void onEditidIdAct(TableColumn.CellEditEvent<Reservation, Integer> event) {
            Reservation re=TableResBack.getSelectionModel().getSelectedItem();       
         re.setIdAct(event.getNewValue());
           ReservationCRUD reService = new ReservationCRUD();
         reService.modifierResevation(re);
     }
-
 @FXML
-
     private void onEditnbre(TableColumn.CellEditEvent<Reservation, Integer> event) {
            Reservation re=TableResBack.getSelectionModel().getSelectedItem();       
         re.setNbre_Perso(event.getNewValue());
          ReservationCRUD reService = new ReservationCRUD();
         reService.modifierResevation(re);
     }
-@FXML
+    @FXML
     private void onEditNumCab(TableColumn.CellEditEvent<Reservation, Integer> event) {
            Reservation re=TableResBack.getSelectionModel().getSelectedItem();       
         re.setNumCabR(event.getNewValue());
@@ -175,5 +177,52 @@ public class GestionReservationbackController implements Initializable {
                 .println("Please check the result file under c:/temp/lars.xls ");
     }
 
+ 
 
-}
+    @FXML
+    private void Rechercher(ActionEvent event) {
+    ReservationCRUD evc = new ReservationCRUD();
+
+   
+
+         List<Reservation> liste = evc.listerResevation();
+        ObservableList<Reservation> olist = FXCollections.observableArrayList(liste);  
+         try{
+        
+          TableResBack.setItems(olist);
+          FilteredList<Reservation> filtredData = new FilteredList<>(olist, b -> true);
+          recherche.textProperty().addListener((observable, olValue, newValue)->{
+             filtredData.setPredicate(person-> {
+                 if(newValue == null|| newValue.isEmpty()){
+                     return true;
+                 }
+                 String lowerCaseFilter= newValue.toLowerCase();
+                
+                 if(person.getNomClient().toLowerCase().indexOf(lowerCaseFilter)!=-1){
+                     return true;
+                 }
+                 else if(String.valueOf(person.getNbre_Perso()).indexOf(lowerCaseFilter)!=-1)
+                     return true;
+                     else
+                     return false;
+                 });
+             });
+         SortedList<Reservation> sortedData = new SortedList<Reservation>(filtredData);
+         sortedData.comparatorProperty().bind(TableResBack.comparatorProperty());
+         TableResBack.setItems(sortedData);
+
+         }catch(Exception e){
+             System.out.println(e.getMessage());
+             
+         }          
+          
+          
+     }
+          
+     }
+
+
+
+
+
+

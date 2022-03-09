@@ -110,7 +110,7 @@ public class GestionReservationController implements Initializable {
     public void Réservationa(ActionEvent event) {
                  ControleSaisie u =new ControleSaisie();
 
-          if (!u.Num(NomR.getText()))
+          if (!u.testnomprenom(NomR.getText()))
         {
             ctrlnom.setText("Erreur ! Veuillez insérer un Nom valide");
         }
@@ -118,7 +118,7 @@ public class GestionReservationController implements Initializable {
         {
              ctrlnom.setText("");
         }
-        if (!u.Num(PrénomR.getText()))
+        if (!u.testnomprenom(PrénomR.getText()))
         {
             ctrlprenom.setText("Erreur ! Veuillez insérer un Prénom valide");
         }

@@ -11,6 +11,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import reservation.entities.Reservation;
 import reservation.utils.MyConnection;
 
@@ -90,20 +94,9 @@ public class ReservationCRUD {
             System.out.println(ex.getMessage());
         }
    return mylist;}
-     public void deleteResevation(Reservation z) {
-       try
-       {            Reservation per=new Reservation();
-
-           String requete="DELETE FROM res_act WHERE IdRes =?";
-          PreparedStatement pste=MyConnection.getInstance().getCnx().prepareStatement(requete);
-            pste.setInt(1,per.getIdRes());
-            pste.executeUpdate();
-       }catch(SQLException ex)
-       {
-          System.out.println(ex.getMessage());
-       }
-       
- }
+    
+    
+    
  
            
  
@@ -129,4 +122,19 @@ public class ReservationCRUD {
             System.out.println(ex.getMessage());            
         }
     }
+    public void deleteResevation(Reservation z) {
+       try
+       {            
+
+           String requete="DELETE FROM res_act WHERE IdRes =?";
+          PreparedStatement pste=MyConnection.getInstance().getCnx().prepareStatement(requete);
+            pste.setInt(1,z.getIdRes());
+            pste.executeUpdate();
+       }catch(SQLException ex)
+       {
+          System.out.println(ex.getMessage());
+       }
+       
+ }
+
 }

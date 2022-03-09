@@ -164,5 +164,28 @@ public class CabineCRUD {
             System.out.println(ex.getMessage());
         }
    return mylist;}
+      public float Prixtotal(){
+             
+                float nbr=0;
+                
+                String requete="SELECT SUM(prix)FROM res_cabine ";
+                
+                try {
+           PreparedStatement st =MyConnection.getInstance().getCnx().prepareStatement(requete);
+             
+
+           ResultSet rs = st.executeQuery();
+           while (rs.next()){
+               nbr =  ((Number) rs.getObject(1)).floatValue();
+               System.out.println(nbr);
+             
+           }
+            }
+                 catch (SQLException ex) {
+            // Logger.getLogger(ClientService.class.getName()).log(Level.SEVERE, null, ex);
+         }
+                
+                return nbr;
+            }
 }
 

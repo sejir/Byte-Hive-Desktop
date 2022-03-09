@@ -32,6 +32,8 @@
             <Label fx:id="Controle" layoutX="48.0" layoutY="169.0" prefHeight="18.0" prefWidth="206.0" />
             <Label fx:id="CTRLN" layoutX="14.0" layoutY="229.0" prefHeight="18.0" prefWidth="182.0" />
             <Label fx:id="CTRLP" layoutX="211.0" layoutY="229.0" prefHeight="18.0" prefWidth="175.0" />
+            <Label fx:id="prixlabel" layoutX="237.0" layoutY="320.0" prefHeight="18.0" prefWidth="98.0" text="Total des Prix:" />
+            <Button layoutX="150.0" layoutY="317.0" mnemonicParsing="false" onAction="#prixtot" prefHeight="26.0" prefWidth="79.0" text="Prix Total" />
          </children>
       </AnchorPane>
    </children>
