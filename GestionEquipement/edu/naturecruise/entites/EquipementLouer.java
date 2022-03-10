@@ -14,16 +14,20 @@ import java.sql.Date;
 public class EquipementLouer {
     private int idEquipement;
     private String nomEquipement;
-    private float prixEquipement;
+    private String prixEquipement;
     private String descriptionEquipement;
     private String imageEquipement;
     private int idFournisseur;
     private int disponibilite;
+    private Double rating;
+
+
+    
     
     public EquipementLouer() {
     }
 
-    public EquipementLouer(int idEquipement, String nomEquipement, float prixEquipement, String descriptionEquipement, String imageEquipement, int idFournisseur,int disponibilite) {
+    public EquipementLouer(int idEquipement, String nomEquipement, String prixEquipement, String descriptionEquipement, String imageEquipement, int idFournisseur,int disponibilite) {
         this.idEquipement = idEquipement;
         this.nomEquipement = nomEquipement;
         this.prixEquipement = prixEquipement;
@@ -33,10 +37,20 @@ public class EquipementLouer {
         this.disponibilite = disponibilite;
     }
 
-
-    public EquipementLouer(int i, String ben_Salah, int i0, String hedi, String fd, int i1, Date date, Date date0, int i2) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public EquipementLouer(int idEquipement, String nomEquipement, String prixEquipement, String descriptionEquipement, String imageEquipement, int idFournisseur, int disponibilite, Double rating) {
+        this.idEquipement = idEquipement;
+        this.nomEquipement = nomEquipement;
+        this.prixEquipement = prixEquipement;
+        this.descriptionEquipement = descriptionEquipement;
+        this.imageEquipement = imageEquipement;
+        this.idFournisseur = idFournisseur;
+        this.disponibilite = disponibilite;
+        this.rating = rating;
     }
+
+//    public EquipementLouer(int i, String ben_Salah, int i0, String hedi, String fd, int i1, Date date, Date date0, int i2) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
 
     public int getIdEquipement() {
@@ -55,11 +69,11 @@ public class EquipementLouer {
         this.nomEquipement = nomEquipement;
     }
 
-    public float getPrixEquipement() {
+    public String getPrixEquipement() {
         return prixEquipement;
     }
 
-    public void setPrixEquipement(float prixEquipement) {
+    public void setPrixEquipement(String prixEquipement) {
         this.prixEquipement = prixEquipement;
     }
 
@@ -93,6 +107,14 @@ public class EquipementLouer {
 
     public void setDisponibilite(int disponibilite) {
         this.disponibilite = disponibilite;
+    }
+    
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 
     @Override

@@ -5,25 +5,50 @@
  */
 package GUI;
 
+import edu.naturecruise.entites.ClientLouer;
 import edu.naturecruise.entites.EquipementLouer;
 import edu.naturecruise.entites.EquipementVendre;
 import edu.naturecruise.entites.Louer;
 import edu.naturecruise.services.EquipementLouerCRUD;
 import edu.naturecruise.services.EquipementVendreCRUD;
+import edu.naturecruise.utils.MyConnetion;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,10 +58,11 @@ import javax.swing.JOptionPane;
  */
 public class FXMLEquipementLouerController implements Initializable {
 
+    private TableView<EquipementLouer> TVEquipV;
     @FXML
-    private TextField TFId;
+    private Button btnImage;
     @FXML
-    private TextField TFIdEquipL;
+    private TextField TFImageEquipL;
     @FXML
     private TextField TFNomEquipL;
     @FXML
@@ -44,38 +70,23 @@ public class FXMLEquipementLouerController implements Initializable {
     @FXML
     private TextField TFPrixEquipL;
     @FXML
-    private TextField TFImageEquipL;
+    private TextField TFidEquipL;
     @FXML
-    private TextField TFIdFEquipL;
+    private Button btnAjouterEquipL;
     @FXML
-    private TextField TFDisponibiliteEquipL;
+    private Button btnModifierEquipL;
     @FXML
-    private Button BTNQuitterEquipL;
-    private TableView<EquipementLouer> TVEquipV;
+    private Button btnSupprimerEquipL;
+  
+    private final int MAX_COLUMNS = 5 ; 
     @FXML
-    private TableColumn<EquipementLouer, Integer> colIdEquipL;
+    private GridPane gridEquipL;
     @FXML
-    private TableColumn<EquipementLouer, String> colNomEquipL;
+    private TextField TFIdFournisseur;
     @FXML
-    private TableColumn<EquipementLouer, Float> colPrixEquipL;
+    private Button btnQuitter;
     @FXML
-    private TableColumn<EquipementLouer, String> colDescriptionEquipL;
-    @FXML
-    private TableColumn<EquipementLouer, String> colImageEquipL;
-    @FXML
-    private TableColumn<EquipementLouer, Integer> colIdFEquipL;
-    @FXML
-    private TableColumn<EquipementLouer, Integer> colDisponibiliteEquipL;
-    @FXML
-    private TableView<EquipementLouer> TVEquipL;
-    @FXML
-    private TableView<EquipementLouer> TVRetardCkient;
-    @FXML
-    private TableColumn<EquipementLouer, String> colNomClient;
-    @FXML
-    private TableColumn<EquipementLouer, String> colNomEquipL1;
-    @FXML
-    private TableColumn<EquipementLouer, Integer> colNbJours;
+    private GridPane gridLouer;
 
     /**
      * Initializes the controller class.
@@ -83,126 +94,223 @@ public class FXMLEquipementLouerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        afficherEquipementL();
+        afficherEquipL();
+        afficherLouer();
     }  
-
     @FXML
-    private void ajouterEquipementL(ActionEvent event) {
-        
-        String nom = TFNomEquipL.getText();
-        float prix = Integer.parseInt(TFPrixEquipL.getText());
-        String Description = TADescriptionEquipL.getText();
-        String image = TFImageEquipL.getText();
-        int idF = Integer.parseInt(TFIdFEquipL.getText());
-        int disponibilite = Integer.parseInt(TFDisponibiliteEquipL.getText());
-        EquipementLouer el = new EquipementLouer(0,nom,prix,Description,image,idF,disponibilite);
-        EquipementLouerCRUD elc = new EquipementLouerCRUD();
-        elc.ajouterEquipementLouer(el);
-        
-        JOptionPane.showMessageDialog(null,"l'equipement a été ajouté avec succes");
-        afficherEquipementL();
-        
-        TFNomEquipL.setText("");
-        TFPrixEquipL.setText("");
-        TADescriptionEquipL.setText("");
-        TFImageEquipL.setText("");
-        TFIdFEquipL.setText("");
-        TFDisponibiliteEquipL.setText("");
+    private void selectionnerImage(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.getExtensionFilters().addAll(
+        new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        fileChooser.setInitialDirectory(new File("C:\\Users\\user\\Documents\\NetBeansProjects\\Nature Cruise\\src\\image"));
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            String TempprofilePicture = file.toURI().toString();
+            System.out.println(TempprofilePicture);
+            //Image image = new Image(TempprofilePicture);
+            TFImageEquipL.setText(TempprofilePicture);
+            
+        }
     }
 
-    private void afficherEquipementL() {
+    @FXML
+    private void ajouterEquipL(ActionEvent event) {
+        String nom = TFNomEquipL.getText();
+        String prix = TFPrixEquipL.getText();
+        String Description = TADescriptionEquipL.getText();
+        String image = TFImageEquipL.getText();
+        int idF = Integer.parseInt(TFIdFournisseur.getText());//[a-zA-Z0-9]+\\.[a-zA-Z]
+        if((TFNomEquipL.getText().matches("^[a-zA-Z]+$")|| !TFNomEquipL.getText().isEmpty())&&(TFPrixEquipL.getText().matches("^[0-9]+$") || !TFPrixEquipL.getText().isEmpty())&&(TADescriptionEquipL.getText().matches("^[a-z A-Z 0-9]+$") || !TADescriptionEquipL.getText().isEmpty())&& TFIdFournisseur.getText().matches("^[0-9]+$")){
+            EquipementLouer el = new EquipementLouer(0, nom, prix, Description, image, idF, 1);
+            EquipementLouerCRUD evc = new EquipementLouerCRUD();
+            evc.ajouterEquipementLouer(el);
+            JOptionPane.showMessageDialog(null,"l'equipement a été ajouté avec succes");
+            gridEquipL.getChildren().clear();
+            afficherEquipL();
+        //afficherChiffreAffaire();
+
+            TFNomEquipL.setText("");
+            TFPrixEquipL.setText("");
+            TADescriptionEquipL.setText("");
+            TFImageEquipL.setText("");
+
+            TFIdFournisseur.setText("");
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"verifier les donnees");
+        }
+    }
+
+    private void afficherEquipL(){
+       int row = 0;
+        int column = 0;
+        List<EquipementLouer> list = new ArrayList();
         EquipementLouerCRUD evc = new EquipementLouerCRUD();
-        ObservableList<EquipementLouer> listEqL = evc.listerEquipementLouer();
-        colIdEquipL.setCellValueFactory(new PropertyValueFactory<EquipementLouer,Integer>("idEquipement"));
-        colNomEquipL.setCellValueFactory(new PropertyValueFactory<EquipementLouer,String>("nomEquipement"));
-        colPrixEquipL.setCellValueFactory(new PropertyValueFactory<EquipementLouer,Float>("prixEquipement"));
-        colDescriptionEquipL.setCellValueFactory(new PropertyValueFactory<EquipementLouer,String>("descriptionEquipement"));
-        colImageEquipL.setCellValueFactory(new PropertyValueFactory<EquipementLouer,String>("imageEquipement"));
-        colIdFEquipL.setCellValueFactory(new PropertyValueFactory<EquipementLouer,Integer>("idFournisseur"));
-        colDisponibiliteEquipL.setCellValueFactory(new PropertyValueFactory<EquipementLouer,Integer>("disponibilite"));
-        TVEquipL.setItems(listEqL);
+        list = evc.listerEquipementLouer1();
+        try {
+            for (int i = 0; i < list.size(); i++) {
+                
+                FXMLLoader itemFxmlLoader = new FXMLLoader(getClass().getResource("FXMLEquipementL.fxml"));
+                                
+                VBox vbox = itemFxmlLoader.load();
+                System.err.println("Loading vBOX with id "+ i);                
+                vbox.setId("Equipement_"+i);                                                
+                
+                FXMLEquipementLController itemController = itemFxmlLoader.getController();
+                itemController.afficher(list.get(i));
+                if (column == MAX_COLUMNS) {
+                    column = 0;
+                    row++;
+                }
+                gridEquipL.add(vbox, column++, row);
+                GridPane.setMargin(vbox, new Insets(10));
+            }
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+    }
+    
+    private void afficherLouer(){
+       int row = 0;
+        int column = 0;
+        List<ClientLouer> list = new ArrayList();
+        EquipementLouerCRUD evc = new EquipementLouerCRUD();
+        list = evc.clientEquip();
+        try {
+            for (int i = 0; i < list.size(); i++) {
+                
+                FXMLLoader itemFxmlLoader = new FXMLLoader(getClass().getResource("FXMLClientLouer.fxml"));
+                                
+                VBox vbox = itemFxmlLoader.load();
+                System.err.println("Loading vBOX with id "+ i);                
+                vbox.setId("Equipement_"+i);                                                
+                
+                FXMLClientLouerController itemController = itemFxmlLoader.getController();
+                itemController.afficher(list.get(i));
+                if (column == MAX_COLUMNS) {
+                    column = 0;
+                    row++;
+                }
+                gridLouer.add(vbox, column++, row);
+                GridPane.setMargin(vbox, new Insets(10));
+            }
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
     }
     
     @FXML
-    private void modifierEquipementL(ActionEvent event) {
-        int id = Integer.parseInt(TFIdEquipL.getText());
+    private void modifierEquipL(ActionEvent event) {
+        int id = Integer.parseInt(TFidEquipL.getText());
         String nom = TFNomEquipL.getText();
-        float prix = Integer.parseInt(TFPrixEquipL.getText());
+        String prix = TFPrixEquipL.getText();
         String Description = TADescriptionEquipL.getText();
-        int idF = Integer.parseInt(TFIdFEquipL.getText());
-        int disponibilite = Integer.parseInt(TFDisponibiliteEquipL.getText());
+        String image = TFImageEquipL.getText();
+        int idF = Integer.parseInt(TFIdFournisseur.getText());
         
-        EquipementLouer ev = new EquipementLouer(12,nom,prix,Description,"IMAGE",idF,disponibilite);
+        EquipementLouer el = new EquipementLouer(id,nom,prix,Description,image,idF,1);
         EquipementLouerCRUD evc = new EquipementLouerCRUD();
         try{
-        
-         evc.modifierEquipementLouer(id,ev);
-         afficherEquipementL();
-        
-        JOptionPane.showMessageDialog(null, "L'equipement à ete modifier avec succes");
+            if((TFNomEquipL.getText().matches("^[a-zA-Z]+$") && TFNomEquipL.getText().isEmpty()==false)&&(TFPrixEquipL.getText().matches("^[0-9]+$") || !TFPrixEquipL.getText().isEmpty())&&(TADescriptionEquipL.getText().matches("^[a-z A-Z 0-9]+$") || !TADescriptionEquipL.getText().isEmpty())&& TFIdFournisseur.getText().matches("^[0-9]+$"))
+            {
+                evc.modifierEquipementLouer(id,el);
+                gridEquipL.getChildren().clear();
+                afficherEquipL();
+                JOptionPane.showMessageDialog(null, "L'equipement à ete modifier avec succes");
+                TFidEquipL.setText("");
+                TFNomEquipL.setText("");
+                TFPrixEquipL.setText("");
+                TADescriptionEquipL.setText("");
+                TFImageEquipL.setText("");  
+                TFIdFournisseur.setText("");
+            }else{
+                JOptionPane.showMessageDialog(null,"verifier les donnees");
+            }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-        TFIdEquipL.setText("");
-        TFNomEquipL.setText("");
-        TFPrixEquipL.setText("");
-        TADescriptionEquipL.setText("");
-        TFImageEquipL.setText("");        
-        TFIdFEquipL.setText("");
-        TFDisponibiliteEquipL.setText("");
-    
-    
     }
 
     @FXML
-    private void supprimerEquipementL(ActionEvent event) {
-        int id = Integer.parseInt(TFIdEquipL.getText());
+    private void supprimerEquipL(ActionEvent event) {
+        int id = Integer.parseInt(TFidEquipL.getText());System.out.println(id);
         EquipementLouerCRUD evc = new EquipementLouerCRUD();
         evc.supprimerEquipementLouer(id);
-        afficherEquipementL();
-        JOptionPane.showMessageDialog(null,"l'equipement a été supprimer avec succes");
-        TFIdEquipL.setText("");
+        gridEquipL.getChildren().clear();
+        afficherEquipL();
+        JOptionPane.showMessageDialog(null,"l'equipement a été supprimé avec succès");        
+        TFidEquipL.setText("");
         TFNomEquipL.setText("");
         TFPrixEquipL.setText("");
         TADescriptionEquipL.setText("");
-        TFImageEquipL.setText("");        
-        TFIdFEquipL.setText("");
-        TFDisponibiliteEquipL.setText("");
+        TFImageEquipL.setText("");  
+        TFIdFournisseur.setText("");
     }
 
     @FXML
-    private void Quitter(ActionEvent event) {
-        
+    private void selectionner(MouseEvent event) throws SQLException {
+        ObservableList<Node> children= gridEquipL.getChildren();                        
+
+        Node clickedNode = event.getPickResult().getIntersectedNode();
+        if (clickedNode != gridEquipL) {                        
+                // click on descendant node
+                Node parent = clickedNode.getParent();
+                while (parent != gridEquipL) {
+                    clickedNode = parent;
+                    parent = clickedNode.getParent();
+                }
+                Integer colIndex = GridPane.getColumnIndex(clickedNode);
+                Integer rowIndex = GridPane.getRowIndex(clickedNode);
+                //System.out.println("Mouse clicked on : " + colIndex + "  and " + rowIndex);
+      
+                int targetNodePosition = colIndex + MAX_COLUMNS * rowIndex; 
+                                
+                VBox targetItem = (VBox) children.get(targetNodePosition) ;                 
+                
+                TFNomEquipL.setText( ((Label)targetItem.getChildren().get(2)).getText()  );
+                TADescriptionEquipL.setText( ((Label)targetItem.getChildren().get(4)).getText());
+                TFPrixEquipL.setText( ((Label)targetItem.getChildren().get(6)).getText() );
+                TFIdFournisseur.setText( ((Label)targetItem.getChildren().get(9)).getText());
+                TFidEquipL.setText( ((Label)targetItem.getChildren().get(8)).getText());
+                String img = imageAfficher(Integer.parseInt(((Label) targetItem.getChildren().get(8)).getText()));
+                TFImageEquipL.setText(img);
+                //TFImageEquipV.setText( ((Label)targetItem.getChildren().get(0)).getText());   
+                 
+        }
     }
+    
+    private String imageAfficher(int id) throws SQLException{
+         String img="";
+         String requete = "SELECT imageEquipement FROM equipementlouer where idEquipement="+id;
+            Statement st= MyConnetion.getInstance().getCnx().prepareStatement(requete);
+            ResultSet rs = st.executeQuery(requete);
+            while(rs.next()){
+                img=rs.getString("imageEquipement");
+            }
+         return img;
+     }
 
     @FXML
-    private void selectionner(MouseEvent event) {
-        
-        int index =TVEquipL.getSelectionModel().getSelectedIndex();
-        if(index <= -1){
-         return ;
-         }
-        TFIdEquipL.setText(colIdEquipL.getCellData(index).toString());
-        TFNomEquipL.setText(colNomEquipL.getCellData(index));
-        TFPrixEquipL.setText(colPrixEquipL.getCellData(index).toString());
-        TADescriptionEquipL.setText(colDescriptionEquipL.getCellData(index));
-        TFImageEquipL.setText(colImageEquipL.getCellData(index));
-        TFIdFEquipL.setText(colIdFEquipL.getCellData(index).toString());
-        TFDisponibiliteEquipL.setText(colDisponibiliteEquipL.getCellData(index).toString());
-
+    private void quitter(ActionEvent event) {
+         try{
+            btnQuitter.getScene().getWindow().hide();
+            Parent root =FXMLLoader.load(getClass().getResource("FXMLMenuEquipement.fxml"));
+                Stage mainStage = new Stage();
+                Scene scene= new Scene(root);
+                mainStage.setScene(scene);
+                 mainStage.setTitle("Equipements à Vendre");
+                mainStage.show();
+               // JOptionPane.showMessageDialog(null, "Bienvenue dans votre interface Equipements à Vendre");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e);
+            
+        }
     }
-    
-    private void afficherClientRetard() {
-        EquipementLouerCRUD elc = new EquipementLouerCRUD();
-        ObservableList<EquipementLouer> listEqV = elc.duree();
-        colNomClient.setCellValueFactory(new PropertyValueFactory<EquipementLouer,String>("c.nomClient"));
-        colNomEquipL1.setCellValueFactory(new PropertyValueFactory<EquipementLouer,String>("nomEquipement"));
-        
-
-        TVRetardCkient.setItems(listEqV);
-    }
-
-    
     
     
 }
