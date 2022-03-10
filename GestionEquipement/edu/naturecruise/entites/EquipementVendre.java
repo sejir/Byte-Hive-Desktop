@@ -5,6 +5,13 @@
  */
 package edu.naturecruise.entites;
 
+import edu.naturecruise.utils.MyConnetion;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 /**
  *
  * @author user
@@ -12,16 +19,17 @@ package edu.naturecruise.entites;
 public class EquipementVendre {
     private int idEquipement;
     private String nomEquipement;
-    private float prixEquipement;
+    private String prixEquipement;
     private String descriptionEquipement;
     private String imageEquipement;
     private int idFournisseur;
-    private int quantiteEquipement;
+    private String quantiteEquipement;
+    private Double rating;
 
     public EquipementVendre() {
     }
 
-    public EquipementVendre(int idEquipement, String nomEquipement, float prixEquipement, String descriptionEquipement, String imageEquipement,int quantiteEquipement,int idFournisseur) {
+    public EquipementVendre(int idEquipement, String nomEquipement, String prixEquipement, String descriptionEquipement, String imageEquipement,String quantiteEquipement,int idFournisseur) {
         this.idEquipement = idEquipement;
         this.nomEquipement = nomEquipement;
         this.prixEquipement = prixEquipement;
@@ -29,6 +37,19 @@ public class EquipementVendre {
         this.imageEquipement = imageEquipement;
         this.quantiteEquipement = quantiteEquipement;
         this.idFournisseur = idFournisseur;
+    }
+
+    
+
+    public EquipementVendre(int idEquipement, String nomEquipement, String prixEquipement, String descriptionEquipement, String imageEquipement, int idFournisseur, String quantiteEquipement, Double rating) {
+        this.idEquipement = idEquipement;
+        this.nomEquipement = nomEquipement;
+        this.prixEquipement = prixEquipement;
+        this.descriptionEquipement = descriptionEquipement;
+        this.imageEquipement = imageEquipement;
+        this.idFournisseur = idFournisseur;
+        this.quantiteEquipement = quantiteEquipement;
+        this.rating = rating;
     }
 
     public int getIdEquipement() {
@@ -47,11 +68,11 @@ public class EquipementVendre {
         this.nomEquipement = nomEquipement;
     }
 
-    public float getPrixEquipement() {
+    public String getPrixEquipement() {
         return prixEquipement;
     }
 
-    public void setPrixEquipement(float prixEquipement) {
+    public void setPrixEquipement(String prixEquipement) {
         this.prixEquipement = prixEquipement;
     }
 
@@ -80,16 +101,28 @@ public class EquipementVendre {
     }
 
     
-    public int getQuantiteEquipement() {
+    public String getQuantiteEquipement() {
         return quantiteEquipement;
     }
 
-    public void setQuantiteEquipement(int quantiteEquipement) {
+    public void setQuantiteEquipement(String quantiteEquipement) {
         this.quantiteEquipement = quantiteEquipement;
+    }
+    
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
     
     @Override
     public String toString() {
         return "Id de l'équipement:" + idEquipement + "Nom de l'équipement:" + nomEquipement +"Prix de l'équipement:" + prixEquipement + "Description de l'équipement:" + descriptionEquipement + "Image de l'équipement:" + imageEquipement + "Id du fournisseur:" + idFournisseur+ "Quantite des équipements:" + quantiteEquipement; 
     }
+
+    
+    
+    
 }
