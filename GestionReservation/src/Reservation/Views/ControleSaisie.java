@@ -120,7 +120,7 @@ public class ControleSaisie {
 //        ********************************Code Postale contient 4 chiffres **************************************/
 //
 	public boolean Num(String num) {
-		String masque = "[0-9]";
+		String masque = "[0-9999]";
 		Pattern pattern = Pattern.compile(masque);
 		Matcher controler = pattern.matcher(num);
 		if (controler.matches()) {

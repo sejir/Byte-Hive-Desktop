@@ -26,7 +26,7 @@ public class Gestionresmain extends Application {
     public void start(Stage primaryStage) {
         Parent root=null;
         try {
-            root = FXMLLoader.load(getClass().getResource("GestionCabine.fxml"));
+            root = FXMLLoader.load(getClass().getResource("GestionReservation.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setTitle("Reserver!");
             primaryStage.setScene(scene);

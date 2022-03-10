@@ -185,8 +185,8 @@ private Double lng[]={10.171078,
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 TextFields.bindAutoCompletion(idAdresse,loc);
-        WebEngine webEngine = idWebView.getEngine();
-        File f = new File(getClass().getClassLoader().getResource("Testmap/map3.html").getFile());
+            WebEngine webEngine = idWebView.getEngine();
+        File f = new File(getClass().getClassLoader().getResource("html/map5.html").getFile());
         webEngine.load(f.toURI().toString());
     }    
 
@@ -213,7 +213,7 @@ TextFields.bindAutoCompletion(idAdresse,loc);
         "<input type=\"submit\" name=\"Submit\" value=\"Submit\">"+
         "</form>"+
         "<iframe"+
-        "name=\"mapframe\" width=\"800\" height=\"900\""+ 
+            "name=\"mapframe\" width=\"800\" height=\"900\""+ 
         "src=\"https://www.google.com/maps?z=11&amp;f=d&amp;output=embed&amp;ll='"+lat[i]+"','"+lng[i]+"'\">"
         +"</iframe>");
     }

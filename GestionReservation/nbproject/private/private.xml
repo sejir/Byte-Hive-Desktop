@@ -3,26 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/services/CabineCRUD.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/GestionReservation.fxml</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/services/ReservationCRUD.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/excel.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/MapreservationController.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/Translate.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/entities/Reservation.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/ControleSaisie.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/GestionReservationController.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/entities/Cabine.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/Gestionresmain.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/GestionReservationbackController.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/entities/Mapa.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/GestionCabine.fxml</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/Mapreservation.fxml</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/main/MainClass.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/GestionCabineController.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/GestionReservationback.fxml</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/cabineback.java</file>
-            <file>file:/C:/Users/Sejir/Documents/NetBeansProjects/GestionReservation/src/Reservation/Views/capt.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/cabineback.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/AuthorizePaymentServlet.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/ControleSaisie.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/FirstWindow.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/Translate.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/PaypalController.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/capt.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/ReviewPaymentServlet.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/MapreservationController.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/Gestionresmain.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/OrderDetail.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/Paypal.fxml</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/PaymentServices.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/ExecutePaymentServlet.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/GestionReservationbackController.java</file>
+            <file>file:/C:/Users/Sejir/Desktop/gestion%20reservations/GestionReservation/src/Reservation/Views/excel.java</file>
         </group>
     </open-files>
 </project-private>
