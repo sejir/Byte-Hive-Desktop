@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.SprintJava1.utils;
+package edu.SprintJava2.utlis;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,10 +14,10 @@ import java.sql.SQLException;
  * @author chayma
  */
 public class MyConnection {
-    public String url ="jdbc:mysql://localhost:3306/sprintbase";
-    public String login = "root";
-    public String pwd="";
-    Connection cnx; 
+    public String url = "jdbc:mysql://localhost:3306/sprint1";
+public String login = "root";
+public String pwd ="";
+Connection cnx; 
 public static MyConnection instance ;
 public  MyConnection(){
 try {
