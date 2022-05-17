@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionCamping.gui.GuideController">
+   <children>
+      <TableView fx:id="tguide" layoutX="433.0" layoutY="25.0" onMouseClicked="#selectrow" prefHeight="287.0" prefWidth="540.0">
+         <columns>
+            <TableColumn fx:id="gnom" prefWidth="125.0" text="Nom" />
+            <TableColumn fx:id="gprenom" prefWidth="134.0" text="Prénom" />
+            <TableColumn fx:id="glieux" prefWidth="136.0" text="Lieux" />
+            <TableColumn fx:id="gdispo" prefWidth="143.0" text="Disponibilté" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnmodif" layoutX="740.0" layoutY="343.0" mnemonicParsing="false" onAction="#modifierguide" prefHeight="31.0" prefWidth="105.0" text="Modifier" />
+      <Button fx:id="btnsupp" layoutX="860.0" layoutY="343.0" mnemonicParsing="false" onAction="#supprimguide" prefHeight="31.0" prefWidth="105.0" text="Supprimer" />
+      <Button fx:id="fpdf" layoutX="464.0" layoutY="343.0" mnemonicParsing="false" onAction="#impdf" text="PDF" />
+      <ImageView fx:id="QRCode" fitHeight="73.0" fitWidth="90.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="qr" layoutX="82.0" layoutY="35.0" mnemonicParsing="false" onAction="#qrrr" text="QRCode" />
+      <Label layoutX="62.0" layoutY="92.0" text="Nom" />
+      <Label layoutX="64.0" layoutY="141.0" text="Prénom" />
+      <TextField fx:id="gfnom" layoutX="154.0" layoutY="87.0" />
+      <TextField fx:id="gfprenom" layoutX="154.0" layoutY="136.0" />
+      <Button fx:id="BtnVa" layoutX="165.0" layoutY="326.0" mnemonicParsing="false" onAction="#ajouterguide" prefHeight="31.0" prefWidth="166.0" text="Valider" />
+      <Label layoutX="63.0" layoutY="193.0" text="Lieux" />
+      <Label layoutX="59.0" layoutY="238.0" text="Disponibilté" />
+      <TextField fx:id="gflieux" layoutX="155.0" layoutY="188.0" />
+      <DatePicker fx:id="gfdispo" layoutX="155.0" layoutY="233.0" prefHeight="31.0" prefWidth="187.0" />
+      <Button fx:id="tz" layoutX="555.0" layoutY="342.0" mnemonicParsing="false" onAction="#afficherg" text="AFFICHER" />
+   </children>
+</AnchorPane>
